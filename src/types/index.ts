@@ -1,6 +1,6 @@
 export type PaymentMethod = "online" | "offline"
 
-export interface IProduct {
+export interface IProductCard {
   id: string;
   description: string;
   image: string;  
@@ -10,11 +10,11 @@ export interface IProduct {
 }
 
 export interface IBasket {
-  items: IProduct[];
+  items: IProductCard[];
   total: number;
 }
 
-export interface IOrder {
+export interface IFormOrder {
   payment: PaymentMethod;
   email: string;
   phone: string;
@@ -23,9 +23,26 @@ export interface IOrder {
   items: string[];
 }
 
-export interface IOrderResult {
+export interface IFormOrderResult {
   id: string;
   total: number;
 }
 
+export interface IModel {
+  cardsList?: IProductCard[];
+  product?: IProductCard;
+  basket?: IBasket;
+  order?: IFormOrderResult;
+  stateModal: Boolean;
+}
+
+export interface IController {
+  model: IModel;
+}
+
+
+export interface IView {
+  mount: (arr: HTMLElement[]) => void;
+  controller: IController;
+}
 
