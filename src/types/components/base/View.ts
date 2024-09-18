@@ -27,6 +27,8 @@ export interface IChangeable<T> {
 	onChange: (args: IChangeableEvent<T>) => void;
 }
 
+// ВОЗМОЖНО НУЖНО БУДЕТ УДАЛИТЬ ТАК КАК СЕЛЕКТ ЭЛЕМЕНТА НАМ НЕ НУЖЕН
+
 // Настройки для выбираемого отображения (списки, таблицы...)
 export type ISelectableEvent<T> = { event: Event; value?: T };
 export interface ISelectable<T> {

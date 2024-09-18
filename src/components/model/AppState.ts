@@ -1,15 +1,18 @@
 import {
 	IOrderResult,
-	AppStateSettings,
 	IWebLarekApi,
 	IPayment,
-	AppStateModals,
-	AppStateChanges,
 	IContacts,
 	IProduct,
-	AppState,
 	IOrder,
-} from '../../types';
+} from '../../types/components/model/WebLarekApi';
+
+import {
+	AppStateSettings,
+	AppStateModals,
+	AppStateChanges,
+	AppState,
+} from '../../types/components/model/AppState';
 
 export class AppStateModel implements AppState {
 	products: Map<string, IProduct> = new Map<string, IProduct>();
