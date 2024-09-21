@@ -1,3 +1,5 @@
+import { ElementCreator } from './../types/html';
+
 // Типизировать настройки не обязательно, но это поможет вам не забыть,
 // какие настройки есть и какие значения они могут принимать.
 // Также это позволит не приводить типы в каждом файле, где используются настройки.
@@ -28,21 +30,7 @@ export interface Settings {
 		category: string;
 		price: string;
 		compactClass: string;
-	};
-
-	basketSelector: string;
-	basketTemplate: string;
-	basketSettings: {
-		activeItemClass: string;
-		itemClass: string;
-	};
-
-	orderSelector: string;
-	orderTemplate: string;
-	orderSettings: {
-		orderCard: string;
-		orderCash: string;
-		address: string;
+		isCompact: false;
 	};
 
 	orderContactsTemplate: string;
@@ -51,9 +39,60 @@ export interface Settings {
 		phone: string;
 	};
 
-	successSelector: string;
-	successTemplat: string;
-	successSettings: {
+	// modals settings
+	modalTemplate: string;
+	modalSettings: {
+		close: string;
+		content: string;
+		activeClass: string;
+		messageErrorClass: string;
+	};
+
+	basketModal: {
+		nextLabel: string;
+		nextSettings: ElementCreator;
+		totalLabel: string;
+	};
+	basketTemplate: string;
+	basketSettings: {
+		activeItemClass: string;
+		itemClass: string;
+	};
+
+	orderModal: {
+		nextLabel: string;
+		nextSettings: ElementCreator;
+	};
+	orderTemplate: string;
+	orderSettings: {
+		// orderCard: string;
+		// orderCash: string;
+		payment: string;
+		address: string;
+	};
+
+	headerTemplate: string;
+	headerSettings: {
+		action: string;
+		title: string;
 		description: string;
+	};
+
+	messageTemplate: string;
+	messageSettings: {
+		title: string;
+		description: string;
+		action?: string;
+	};
+	successModal: {
+		title: string;
+		description: string;
+		action: string;
+	};
+
+	// model settings
+	appState: {
+		formatCurrency: (value: number) => string;
+		storageKey: string;
 	};
 }

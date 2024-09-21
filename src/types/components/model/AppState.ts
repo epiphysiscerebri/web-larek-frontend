@@ -49,7 +49,7 @@ export interface AppState {
 	// Состояние интерфейса
 	isOrderReady: boolean;
 	modalMessage: string | null;
-	isError: boolean;
+	// isError: boolean;
 
 	// Действия с API
 	loadProducts(): Promise<void>;
@@ -58,7 +58,7 @@ export interface AppState {
 
 	// Методы для работы с модальными окнами
 	openModal(modal: AppStateModals): void;
-	setMessage(message: string | null, isError: boolean): void;
+	// setMessage(message: string | null, isError: boolean): void;
 
 	// Пользовательские действия
 	fillContacts(contacts: Partial<IContacts>): void;

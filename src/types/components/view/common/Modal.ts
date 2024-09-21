@@ -5,14 +5,12 @@ export interface ModalData<H, C> {
 	content: C;
 	message?: string;
 	isActive: boolean;
-	isError?: boolean;
+	// isError?: boolean;
 }
 
 export interface ModalSettings<H, C> {
 	close: string;
 	content: string;
-	footer: string;
-	message: string;
 	contentView: IView<C>;
 	actions: HTMLElement[];
 	activeClass: string;

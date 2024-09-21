@@ -23,7 +23,7 @@ export class AppStateModel implements AppState {
 
 	openedModal: AppStateModals = AppStateModals.none;
 	modalMessage: string | null = null;
-	isError = false;
+	// isError = false;
 
 	constructor(
 		protected api: IWebLarekApi,
@@ -161,7 +161,7 @@ export class AppStateModel implements AppState {
 
 	setMessage(message: string | null, isError = false): void {
 		this.modalMessage = message;
-		this.isError = isError;
+		// this.isError = isError;
 		// this.notifyChanged(AppStateChanges.modalMessage);
 	}
 

@@ -28,20 +28,37 @@ export const SETTINGS: Settings = {
 		category: '.card__category',
 		price: '.card__price',
 		compactClass: '.card_compact',
+		isCompact: false,
 	},
 
-	basketSelector: '.basket',
+	modalTemplate: '#modal',
+	modalSettings: {
+		close: '.modal__close',
+		content: '.modal__content',
+		activeClass: 'modal_active',
+		messageErrorClass: 'modal__message_error',
+	},
+
+	basketModal: {
+		nextLabel: 'Оформить',
+		nextSettings: ['button', { className: 'button' }],
+		totalLabel: '',
+	},
 	basketTemplate: '#basket',
 	basketSettings: {
 		activeItemClass: '',
 		itemClass: '.basket__item',
 	},
 
-	orderSelector: '.order',
+	orderModal: {
+		nextLabel: 'Оплатить',
+		nextSettings: ['button', { className: 'button' }],
+	},
 	orderTemplate: '#order',
 	orderSettings: {
-		orderCard: '#card',
-		orderCash: '#cash',
+		// orderCard: '#card',
+		// orderCash: '#cash',
+		payment: '#card' || '#cash',
 		address: '#address',
 	},
 	orderContactsTemplate: '#contacts',
@@ -50,9 +67,26 @@ export const SETTINGS: Settings = {
 		phone: '#phone',
 	},
 
-	successSelector: '.order-success',
-	successTemplat: '#success',
-	successSettings: {
+	headerTemplate: '',
+	headerSettings: {
+		action: '',
+		title: '',
+		description: '',
+	},
+
+	messageTemplate: '#success',
+	messageSettings: {
+		title: 'order-success__title',
 		description: '.order-success__description',
+		action: 'order-success__close',
+	},
+	successModal: {
+		title: 'Заказ оформлен',
+		description: 'Списано ',
+		action: 'За новыми покупками',
+	},
+	appState: {
+		formatCurrency: (value: number) => `${value} синапсов`,
+		storageKey: '__products',
 	},
 };

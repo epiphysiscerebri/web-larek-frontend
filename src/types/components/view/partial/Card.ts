@@ -12,5 +12,7 @@ export interface CardSettings extends IClickable<string> {
 	image: string;
 	title: string;
 	category: string;
-	price: number | null;
+	price: string;
+	compactClass: string;
+	isCompact: boolean;
 }
