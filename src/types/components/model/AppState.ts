@@ -26,7 +26,7 @@ export enum AppStateModals {
 export enum AppStateChanges {
 	products = 'change:product',
 	modal = 'change:modal',
-	modalMessage = 'change:modalMessage',
+	// modalMessage = 'change:modalMessage',
 	selectedProduct = 'change:selectedProduct',
 	basket = 'change:basket',
 	order = 'change:order',
@@ -52,24 +52,29 @@ export interface AppState {
 	// isError: boolean;
 
 	// Действия с API
-	loadProducts(): Promise<void>;
-	loadProduct(id: string): Promise<void>;
-	orderProducts(): Promise<IOrderResult>;
+	getProductList(): Promise<void>;
+	getProduct(id: string): Promise<void>;
+	postOrder(): Promise<IOrderResult[]>;
 
 	// Методы для работы с модальными окнами
 	openModal(modal: AppStateModals): void;
 	// setMessage(message: string | null, isError: boolean): void;
 
 	// Пользовательские действия
+	addBasket(product: IProduct): void;
 	fillContacts(contacts: Partial<IContacts>): void;
 	fillPayment(payment: Partial<IPayment>): void;
+	removeProduct(id: string): void;
 	isValidContacts(): boolean;
 	isValidPayment(): boolean;
+
+	// Вспомогательные методы
+	formatCurrency(value: number): string;
 }
 
 // Описание настройки Модели
 export interface AppStateSettings {
-	currency: string;
+	formatCurrency: (value: number) => string;
 	storageKey: string;
 	// Эта функция будет вызываться при изменении Модели
 	onChange: (changed: AppStateChanges) => void;

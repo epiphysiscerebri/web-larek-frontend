@@ -57,23 +57,28 @@ export class AppStateModel implements AppState {
 	}
 
 	// api acitons
-	async loadProducts(): Promise<void> {
+	async getProductList(): Promise<void> {
+		console.log('data');
+
 		this.products.clear();
-		const products = await this.api.getProductList();
-		for (const product of products) {
-			this.products.set(product.id, product);
-		}
+		const products = await this.api.getProductList().then((data) => {
+			console.log('data', data);
+			for (const product of data) {
+				this.products.set(product.id, product);
+			}
+		});
+		return products;
 		// оповещение, что модель поменялась
 		// this.notifyChanged(AppStateChanges.products);
 	}
 
-	async loadProduct(id: string): Promise<void> {
+	async getProduct(id: string): Promise<void> {
 		const product = await this.api.getProduct(id);
 		this._selectedProduct = product;
 		// this.notifyChanged(AppStateChanges.sessions);
 	}
 
-	async orderProducts(): Promise<IOrderResult> {
+	async postOrder(): Promise<IOrderResult[]> {
 		try {
 			const result = await this.api.postOrder(this.order);
 			this.basket.clear();
@@ -94,8 +99,13 @@ export class AppStateModel implements AppState {
 	}
 
 	// user actions
+
+	addBasket(product: IProduct): void {
+		this.basket.set(product.id, product);
+	}
+
 	selectProduct(id: string | null): void {
-		this.loadProduct(id);
+		this._selectedProduct = this.products.get(id);
 	}
 
 	removeProduct(id: string): void {
@@ -121,6 +131,10 @@ export class AppStateModel implements AppState {
 		};
 		// this.notifyChanged(AppStateChanges.order);
 	}
+
+	// selectProduct(id: string): void {
+	// 	Array.from(this.products).filter((product) => product.id === id);
+	// }
 
 	isValidContacts(): boolean {
 		const error = this.validateContacts(this.contacts);
@@ -199,5 +213,9 @@ export class AppStateModel implements AppState {
 			return errors.join('. ') + '.';
 		}
 		return null;
+	}
+
+	formatCurrency(value: number): string {
+		return this.settings.formatCurrency(value);
 	}
 }

@@ -24,13 +24,13 @@ export interface Settings {
 	cardPreviewTemplate: string;
 	cardBasketTemplate: string;
 	cardSettings: {
-		text: string;
+		description: string;
 		image: string;
 		title: string;
 		category: string;
 		price: string;
 		compactClass: string;
-		isCompact: false;
+		isCompact: boolean;
 	};
 
 	orderContactsTemplate: string;
@@ -73,7 +73,7 @@ export interface Settings {
 
 	headerTemplate: string;
 	headerSettings: {
-		action: string;
+		action?: string;
 		title: string;
 		description: string;
 	};

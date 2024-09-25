@@ -2,7 +2,7 @@ import { IClickable } from '../../base/View';
 
 export interface ProductData {
 	id: string;
-	text: string;
+	description: string;
 	image: string;
 	title: string;
 	category: string;
@@ -10,7 +10,7 @@ export interface ProductData {
 }
 
 export interface ProductSettings extends IClickable<ProductData> {
-	text: string;
+	description: string;
 	image: string;
 	title: string;
 	category: string;

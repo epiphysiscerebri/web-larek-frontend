@@ -22,7 +22,7 @@ export const SETTINGS: Settings = {
 	cardPreviewTemplate: '#card-preview',
 	cardBasketTemplate: '#card-basket',
 	cardSettings: {
-		text: '.card__text',
+		description: '.card__text',
 		image: '.card__image',
 		title: '.card__title',
 		category: '.card__category',

@@ -16,7 +16,7 @@ export class ProductView extends View<ProductData, ProductSettings> {
 	}
 
 	set text(value: string) {
-		this.setValue(this.settings.text, value);
+		this.setValue(this.settings.description, value);
 	}
 
 	set title(value: string) {

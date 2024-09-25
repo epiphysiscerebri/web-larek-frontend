@@ -33,7 +33,7 @@ export interface IOrder extends IContacts, IPayment {
 	items: string[];
 }
 
-// Описание результата заказа, который на присылает сервер, когда мы совершаем заказ
+// Описание результата заказа, который нам присылает сервер, когда мы совершаем заказ
 export interface IOrderResult {
 	id: string;
 	total: number;
@@ -43,5 +43,5 @@ export interface IOrderResult {
 export interface IWebLarekApi {
 	getProduct: (id: string) => Promise<IProduct>;
 	getProductList: () => Promise<IProduct[]>;
-	postOrder: (order: IOrder) => Promise<IOrderResult>;
+	postOrder: (order: IOrder) => Promise<IOrderResult[]>;
 }

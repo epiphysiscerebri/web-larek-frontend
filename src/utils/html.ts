@@ -14,6 +14,7 @@ export function ensureElement<T extends HTMLElement>(
 	selectorElement: SelectorElement<T>,
 	context?: HTMLElement
 ): T {
+	console.log('selectorElement', selectorElement);
 	if (isSelector(selectorElement)) {
 		const elements = ensureAllElements<T>(selectorElement, context);
 		if (elements.length > 1) {
@@ -57,6 +58,7 @@ export function ensureAllElements<T extends HTMLElement>(
 export function cloneTemplate<T extends HTMLElement>(
 	query: string | HTMLTemplateElement
 ): T {
+	console.log('query', query);
 	const template = ensureElement<HTMLTemplateElement>(query);
 	return template.content.firstElementChild.cloneNode(true) as T;
 }

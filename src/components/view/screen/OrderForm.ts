@@ -24,7 +24,7 @@ export class OrderFormScreen extends ModalScreen<
 	initHeader() {
 		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
 			...SETTINGS.headerSettings,
-			// onClick: this.settings.onBack,
+			onClick: null,
 		});
 	}
 

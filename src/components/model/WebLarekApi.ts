@@ -30,7 +30,13 @@ export class WebLarekApi extends Api implements IWebLarekApi {
 	}
 
 	// запрос на формирование заказа
-	async postOrder(order: IOrder): Promise<IOrderResult> {
-		return await this._post<IOrderResult>('/order', order);
+	async postOrder(order: IOrder): Promise<IOrderResult[]> {
+		const data = await this._post<ApiListResponse<IOrderResult>>(
+			'/order',
+			order
+		);
+		return data.items.map((item) => ({
+			...item,
+		}));
 	}
 }

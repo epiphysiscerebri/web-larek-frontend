@@ -1,7 +1,9 @@
+import { ContactsData, PaymentData } from './../partial/Order';
 import { OrderData } from '../partial/Order';
 
 export interface OrderFormData {
-	contacts_and_payment: OrderData;
+	contacts: ContactsData;
+	payment: PaymentData;
 	isActive: boolean;
 	isDisabled: boolean;
 }
