@@ -6,11 +6,11 @@ import {
 import { ProductData } from '../../types/components/view/partial/Product';
 
 export class ProductController extends Controller<AppState> {
-	onAddBasket = (product: ProductData) => {
+	onClick = (product: ProductData) => {
 		this.model.addBasket(product);
 	};
 	onNext = () => {
-		this.model.openModal(AppStateModals.product);
+		this.model.openModal(AppStateModals.basket);
 	};
 	onClose = () => {
 		this.model.openModal(AppStateModals.none);

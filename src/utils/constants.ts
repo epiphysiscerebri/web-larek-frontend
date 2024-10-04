@@ -31,7 +31,7 @@ export const SETTINGS: Settings = {
 		isCompact: false,
 	},
 
-	modalTemplate: '#modal',
+	modalTemplate: '#modal-container',
 	modalSettings: {
 		close: '.modal__close',
 		content: '.modal__content',
@@ -67,12 +67,12 @@ export const SETTINGS: Settings = {
 		phone: '#phone',
 	},
 
-	headerTemplate: '',
-	headerSettings: {
-		action: '',
-		title: '',
-		description: '',
-	},
+	// headerTemplate: '',
+	// headerSettings: {
+	// 	action: '',
+	// 	title: '',
+	// 	description: '',
+	// },
 
 	messageTemplate: '#success',
 	messageSettings: {

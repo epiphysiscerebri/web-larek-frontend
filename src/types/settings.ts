@@ -71,12 +71,12 @@ export interface Settings {
 		address: string;
 	};
 
-	headerTemplate: string;
-	headerSettings: {
-		action?: string;
-		title: string;
-		description: string;
-	};
+	// headerTemplate: string;
+	// headerSettings: {
+	// 	action?: string;
+	// 	title: string;
+	// 	description: string;
+	// };
 
 	messageTemplate: string;
 	messageSettings: {

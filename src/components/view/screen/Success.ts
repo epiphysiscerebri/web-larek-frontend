@@ -14,10 +14,10 @@ import { HeaderData } from './../../../types/components/view/common/Header';
  * Экран подтверждения успешного бронирования
  */
 export class SuccessScreen extends Screen<SuccessData, SuccessSettings> {
-	protected declare modal: ModalView<never, HeaderData>;
+	protected declare modal: ModalView</*never,*/ HeaderData>;
 
 	init() {
-		this.modal = new ModalView<never, HeaderData>(
+		this.modal = new ModalView</*never,*/ HeaderData>(
 			cloneTemplate(SETTINGS.modalTemplate),
 			{
 				...SETTINGS.modalSettings,

@@ -6,8 +6,8 @@ import {
 	OrderFormData,
 	OrderFormSettings,
 } from './../../../types/components/view/screen/OrderForm';
-import { HeaderView } from './../../../components/view/common/Header';
-import { HeaderData } from './../../../types/components/view/common/Header';
+// import { HeaderView } from './../../../components/view/common/Header';
+// import { HeaderData } from './../../../types/components/view/common/Header';
 import { OrderData } from './../../../types/components/view/partial/Order';
 import { OrderView } from './../../../components/view/partial/Order';
 import { IChangeableEvent } from './../../../types/components/base/View';
@@ -16,17 +16,17 @@ import { IChangeableEvent } from './../../../types/components/base/View';
  * Экран формы заказа
  */
 export class OrderFormScreen extends ModalScreen<
-	HeaderData,
+	// HeaderData,
 	OrderData,
 	OrderFormData,
 	OrderFormSettings
 > {
-	initHeader() {
-		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
-			...SETTINGS.headerSettings,
-			onClick: null,
-		});
-	}
+	// initHeader() {
+	// 	return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
+	// 		...SETTINGS.headerSettings,
+	// 		onClick: null,
+	// 	});
+	// }
 
 	initContent() {
 		let objOrder = {

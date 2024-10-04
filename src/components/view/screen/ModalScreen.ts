@@ -13,19 +13,19 @@ Screen;
  * Общая логика и структура модальных окон
  */
 export abstract class ModalScreen<
-	H, // данные для заголовка
+	// H, // данные для заголовка
 	M, // внутренние данные для контента модального окна
 	C, // внешние данные для экрана
 	S extends ModalScreenSettings // настройки экрана (обработчики событий
 > extends Screen<C, S> {
 	// модальное окно
-	protected declare modal: ModalView<H, M>;
+	protected declare modal: ModalView</*H,*/ M>;
 	// кнопка "Далее"
 	protected declare nextButton: HTMLButtonElement;
 
 	// Абстрактные методы для реализации в дочерних классах
 
-	abstract initHeader(): IView<H>;
+	// abstract initHeader(): IView<H>;
 
 	abstract initContent(): IView<M>;
 
@@ -38,7 +38,7 @@ export abstract class ModalScreen<
 
 		this.modal = this.getModalView(
 			{
-				headerView: this.initHeader(),
+				// headerView: this.initHeader(),
 				contentView: this.initContent(),
 			},
 			this.settings.onClose
@@ -61,10 +61,10 @@ export abstract class ModalScreen<
 	}
 
 	protected getModalView(
-		settings: { headerView: IView<H>; contentView: IView<M> },
+		settings: { /*headerView: IView<H>;*/ contentView: IView<M> },
 		onClose: () => void
 	) {
-		return new ModalView<H, M>(cloneTemplate(SETTINGS.modalTemplate), {
+		return new ModalView</*H,*/ M>(cloneTemplate(SETTINGS.modalTemplate), {
 			...SETTINGS.modalSettings,
 			...settings,
 			actions: [this.nextButton],

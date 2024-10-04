@@ -37,11 +37,13 @@ export class MainScreen extends Screen<MainData, MainSettings> {
 			}
 		);
 
+		console.log('this', this)
+
 		this.element = this.page.element;
 	}
 
-	protected onOpenProductHandler({ item }: IClickableEvent<ProductItem>) {
-		this.settings.onOpenProduct(item.id);
+	protected onOpenProductHandler({ item }: IClickableEvent<string>) {
+		this.settings.onOpenProduct(item);
 	}
 
 	set counter(value: number) {

@@ -12,5 +12,5 @@ export interface SelectProductData {
 export interface SelectProductSettings {
 	onClose: () => void;
 	onNext: () => void;
-	onAddBasket: (product: ProductData) => void;
+	onClick: (product: ProductData) => void;
 }

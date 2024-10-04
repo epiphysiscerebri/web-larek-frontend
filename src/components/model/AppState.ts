@@ -58,18 +58,14 @@ export class AppStateModel implements AppState {
 
 	// api acitons
 	async getProductList(): Promise<void> {
-		console.log('data');
-
 		this.products.clear();
 		const products = await this.api.getProductList().then((data) => {
-			console.log('data', data);
 			for (const product of data) {
 				this.products.set(product.id, product);
 			}
 		});
-		return products;
 		// оповещение, что модель поменялась
-		// this.notifyChanged(AppStateChanges.products);
+		this.notifyChanged(AppStateChanges.products);
 	}
 
 	async getProduct(id: string): Promise<void> {
@@ -169,7 +165,7 @@ export class AppStateModel implements AppState {
 		}
 		if (this.openedModal !== modal) {
 			this.openedModal = modal;
-			// this.notifyChanged(AppStateChanges.modal);
+			this.notifyChanged(AppStateChanges.modal);
 		}
 	}
 

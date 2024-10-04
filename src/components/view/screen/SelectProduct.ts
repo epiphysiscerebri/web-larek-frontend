@@ -6,8 +6,8 @@ import {
 	SelectProductSettings,
 } from './../../../types/components/view/screen/SelectedProduct';
 import { ProductData } from './../../../types/components/view/partial/Product';
-import { HeaderData } from './../../../types/components/view/common/Header';
-import { HeaderView } from './../../../components/view/common/Header';
+// import { HeaderData } from './../../../types/components/view/common/Header';
+// import { HeaderView } from './../../../components/view/common/Header';
 import { ProductView } from './../partial/Product';
 import { ProductItem } from './../../../types/components/view/screen/Main';
 import { IClickableEvent } from './../../../types/components/base/View';
@@ -16,17 +16,18 @@ import { IClickableEvent } from './../../../types/components/base/View';
  * Экран открытой карточки товара
  */
 export class SelectProductScreen extends ModalScreen<
-	HeaderData,
+	// HeaderData,
 	Partial<ProductData>,
 	SelectProductData,
 	SelectProductSettings
 > {
-	initHeader() {
-		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
-			...SETTINGS.headerSettings,
-			onClick: null,
-		});
-	}
+	// initHeader() {
+	// 	return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
+	// 		...SETTINGS.headerSettings,
+	// 		onClick: null,
+	// 	});
+	// }
+
 
 	initContent() {
 		return new ProductView(cloneTemplate(SETTINGS.cardPreviewTemplate), {
@@ -36,10 +37,12 @@ export class SelectProductScreen extends ModalScreen<
 	}
 
 	protected onClick({ item }: IClickableEvent<ProductItem>) {
-		this.settings.onAddBasket(item);
+		console.log('item')
+		// this.settings.onAddBasket(item);
 	}
 
 	set product(value: Partial<ProductData>) {
+		console.log('value', value)
 		this.modal.content = value;
 	}
 }

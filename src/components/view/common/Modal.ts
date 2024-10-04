@@ -8,12 +8,12 @@ import {
 /**
  * Отображение модального окна
  */
-export class ModalView<H, C> extends View<
-	ModalData<H, C>,
-	ModalSettings<H, C>
+export class ModalView</*H,*/ C> extends View<
+	ModalData</*H,*/ C>,
+	ModalSettings</*H,*/ C>
 > {
 	// модальное окно, которое сейчас открыто, оно всегда одно
-	protected static _openedModal: ModalView<unknown, unknown> | null;
+	protected static _openedModal: ModalView</*unknown,*/ unknown> | null;
 
 	protected init() {
 		// слушаем клик по иконке закрыть

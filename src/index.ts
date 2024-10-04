@@ -65,9 +65,9 @@ app.on(AppStateModals.product, () => {
 	});
 });
 
-app.on(AppStateChanges.selectedProduct, () => {
-	modal[AppStateModals.product].isDisabled = !app.model.selectedProduct;
-});
+// app.on(AppStateChanges.selectedProduct, () => {
+// 	modal[AppStateModals.product].isDisabled = !app.model.selectedProduct;
+// });
 
 // app.on(AppStateModals.place, () => {
 // 	modal[AppStateModals.place].render({
@@ -136,9 +136,5 @@ app.on(AppStateChanges.order, () => {
 
 app.model
 	.getProductList()
-	.then((data) => {
-		console.log(data);
-	})
 	.catch((err: string) => console.log(`Error: `, err));
 
-console.log('asdasdasdasdas');
