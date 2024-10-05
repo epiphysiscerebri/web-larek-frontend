@@ -1,20 +1,19 @@
 import { IClickable } from '../../base/View';
 
 export interface ProductData {
-	id: string;
-	description: string;
 	image: string;
-	title: string;
 	category: string;
-	price: number | null;
+	title: string;
+	description: string;
+	price: number;
 }
 
 export interface ProductSettings extends IClickable<ProductData> {
-	description: string;
 	image: string;
-	title: string;
 	category: string;
-	price: string | null;
+	title: string;
+	description: string;
+	price: string;
 	compactClass: string;
 	isCompact: boolean;
 }

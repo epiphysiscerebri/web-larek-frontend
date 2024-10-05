@@ -2,17 +2,15 @@ import { IClickable } from '../../base/View';
 
 export interface CardData {
 	id: string;
+	category: string;
 	image: string;
 	title: string;
-	category: string;
-	price: number | null;
+	price: number;
 }
 
 export interface CardSettings extends IClickable<string> {
-	image: string;
-	title: string;
 	category: string;
+	title: string;
+	image: string;
 	price: string;
-	compactClass: string;
-	isCompact: boolean;
 }

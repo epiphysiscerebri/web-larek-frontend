@@ -5,41 +5,40 @@ import { ElementCreator } from './../types/html';
 // Также это позволит не приводить типы в каждом файле, где используются настройки.
 export interface Settings {
 	// views settings
-
-	pageSelector: string;
-	pageSettings: {
-		wrapper: string;
-		counter: string;
-		basket: string;
-	};
-
 	gallerySelector: string;
 	gallerySettings: {
 		activeItemClass: string;
 		itemClass: string;
 	};
 
-	cardSelector: string;
 	cardCatalogTemplate: string;
-	cardPreviewTemplate: string;
-	cardBasketTemplate: string;
 	cardSettings: {
-		description: string;
-		image: string;
-		title: string;
 		category: string;
+		title: string;
+		image: string;
 		price: string;
-		compactClass: string;
-		isCompact: boolean;
 	};
 
-	orderContactsTemplate: string;
-	orderContactsSettings: {
-		email: string;
-		phone: string;
+	productTemplate: string;
+	productSettings: {
+		image: string;
+		category: string;
+		title: string;
+		description: string;
+		price: string;
+		compactClass: string;
+	};
+
+	pageSelector: string;
+	pageSettings: {
+		wrapper: string;
+		counter: string;
+		basket: string;
+		lockedClass: string;
 	};
 
 	// modals settings
+
 	modalTemplate: string;
 	modalSettings: {
 		close: string;
@@ -48,51 +47,51 @@ export interface Settings {
 		messageErrorClass: string;
 	};
 
-	basketModal: {
-		nextLabel: string;
-		nextSettings: ElementCreator;
-		totalLabel: string;
-	};
 	basketTemplate: string;
 	basketSettings: {
 		activeItemClass: string;
 		itemClass: string;
 	};
-
-	orderModal: {
+	basketModal: {
+		title: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
+		totalLabel: string;
 	};
-	orderTemplate: string;
-	orderSettings: {
-		// orderCard: string;
-		// orderCash: string;
+
+	paymentTemplate: string;
+	paymentSettings: {
 		payment: string;
 		address: string;
 	};
+	paymentModal: {
+		titlePayment: string;
+		titleAdress: string;
+		nextLabel: string;
+		nextSettings: ElementCreator;
+	};
 
-	// headerTemplate: string;
-	// headerSettings: {
-	// 	action?: string;
-	// 	title: string;
-	// 	description: string;
-	// };
+	contactsTemplate: string;
+	contactsSettings: {
+		email: string;
+		phone: string;
+	};
+	contactsModal: {
+		titleEmail: string;
+		titlePhone: string;
+		nextLabel: string;
+		nextSettings: ElementCreator;
+	};
 
-	messageTemplate: string;
-	messageSettings: {
+	successTemplate: string;
+	successSettings: {
 		title: string;
 		description: string;
-		action?: string;
+		action: string;
 	};
 	successModal: {
 		title: string;
 		description: string;
 		action: string;
-	};
-
-	// model settings
-	appState: {
-		formatCurrency: (value: number) => string;
-		storageKey: string;
 	};
 }

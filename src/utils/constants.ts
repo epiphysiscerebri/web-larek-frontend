@@ -4,34 +4,42 @@ export const API_URL = `${process.env.API_ORIGIN}/api/weblarek`;
 export const CDN_URL = `${process.env.API_ORIGIN}/content/weblarek`;
 
 export const SETTINGS: Settings = {
-	pageSelector: '.page',
-	pageSettings: {
-		wrapper: '.page__wrapper',
-		counter: '.header__basket-counter',
-		basket: '.header__basket',
-	},
-
+	// views settings
 	gallerySelector: '.gallery',
 	gallerySettings: {
 		activeItemClass: 'gallery__item_active',
 		itemClass: 'gallery__item',
 	},
 
-	cardSelector: '.card_full',
 	cardCatalogTemplate: '#card-catalog',
-	cardPreviewTemplate: '#card-preview',
-	cardBasketTemplate: '#card-basket',
 	cardSettings: {
-		description: '.card__text',
-		image: '.card__image',
-		title: '.card__title',
 		category: '.card__category',
+		title: '.card__title',
+		image: '.card__image',
+		price: '.card__price'
+	},
+	
+	productTemplate: '#card-preview',
+	productSettings: {
+		image: '.card__image',
+		category: '.card__category',
+		title: '.card__title',
+		description: '.card__text',
 		price: '.card__price',
 		compactClass: '.card_compact',
-		isCompact: false,
 	},
 
-	modalTemplate: '#modal-container',
+	pageSelector: '.page',
+	pageSettings: {
+		wrapper: '.page__wrapper',
+		counter: '.header__basket-counter',
+		basket: '.header__basket',
+		lockedClass: 'page__wrapper_locked',
+	},
+
+	// modals settings
+
+	modalTemplate: '#modal',
 	modalSettings: {
 		close: '.modal__close',
 		content: '.modal__content',
@@ -39,54 +47,51 @@ export const SETTINGS: Settings = {
 		messageErrorClass: 'modal__message_error',
 	},
 
-	basketModal: {
-		nextLabel: 'Оформить',
-		nextSettings: ['button', { className: 'button' }],
-		totalLabel: '',
-	},
 	basketTemplate: '#basket',
 	basketSettings: {
 		activeItemClass: '',
-		itemClass: '.basket__item',
+		itemClass: 'basket__item',
+	},
+	basketModal: {
+		title: 'Корзина',
+		nextLabel: 'Оформить',
+		nextSettings: ['button', { className: 'button' }],
+		totalLabel: 'Итого:',
 	},
 
-	orderModal: {
-		nextLabel: 'Оплатить',
-		nextSettings: ['button', { className: 'button' }],
-	},
-	orderTemplate: '#order',
-	orderSettings: {
-		// orderCard: '#card',
-		// orderCash: '#cash',
+	paymentTemplate: '#payment',
+	paymentSettings: {
 		payment: '#card' || '#cash',
 		address: '#address',
 	},
-	orderContactsTemplate: '#contacts',
-	orderContactsSettings: {
-		email: '#email',
-		phone: '#phone',
+	paymentModal: {
+		titlePayment: 'Способ оплаты',
+		titleAdress: 'Адресс доставки',
+		nextLabel: 'Далее',
+		nextSettings: ['button', { className: 'button' }],
 	},
 
-	// headerTemplate: '',
-	// headerSettings: {
-	// 	action: '',
-	// 	title: '',
-	// 	description: '',
-	// },
+	contactsTemplate: '#contacts',
+	contactsSettings: {
+		email: '#email',
+		phone: '#phone'
+	},
+	contactsModal: {
+		titleEmail: 'Email',
+		titlePhone: 'Телефон',
+		nextLabel: 'Далее',
+		nextSettings: ['button', { className: 'button' }],
+	},
 
-	messageTemplate: '#success',
-	messageSettings: {
-		title: 'order-success__title',
+	successTemplate: '#success',
+	successSettings: {
+		title: '.order-success__title',
 		description: '.order-success__description',
-		action: 'order-success__close',
+		action: '.order-success__close',
 	},
 	successModal: {
 		title: 'Заказ оформлен',
-		description: 'Списано ',
-		action: 'За новыми покупками',
+		description: 'Cписано: ',
+		action: 'За новыми покупками!',
 	},
-	appState: {
-		formatCurrency: (value: number) => `${value} синапсов`,
-		storageKey: '__products',
-	},
-};
+}

@@ -1,17 +1,16 @@
 import { IView } from '../../base/View';
 
-export interface ModalData</*H,*/ C> {
-	// header?: H;
+export interface ModalData<C> {
 	content: C;
-	message?: string;
+	// message?: string;
 	isActive: boolean;
-	// isError?: boolean;
 }
 
-export interface ModalSettings</*H,*/ C> {
+export interface ModalSettings<C> {
 	close: string;
 	content: string;
 	contentView: IView<C>;
+	// message: string;
 	actions: HTMLElement[];
 	activeClass: string;
 	messageErrorClass: string;

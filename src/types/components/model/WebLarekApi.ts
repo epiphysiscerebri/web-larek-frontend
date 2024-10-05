@@ -43,5 +43,5 @@ export interface IOrderResult {
 export interface IWebLarekApi {
 	getProduct: (id: string) => Promise<IProduct>;
 	getProductList: () => Promise<IProduct[]>;
-	postOrder: (order: IOrder) => Promise<IOrderResult[]>;
+	postOrder: (order: IOrder) => Promise<IOrderResult>;
 }

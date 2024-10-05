@@ -1,7 +1,8 @@
 import { ProductData } from './../partial/Product';
 
+
+
 export interface BasketData {
-	title: string;
 	products: ProductData[];
 	isActive: boolean;
 	isDisabled: boolean;
