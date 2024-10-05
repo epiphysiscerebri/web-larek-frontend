@@ -43,6 +43,8 @@ export interface AppState {
 	basket: Map<string, IProduct>;
 	// Итог в корзине
 	basketTotal: number;
+	// Массив с ид продуктов в корзине
+	productsInBasket: string[];
 	// Данные об оплате и адресе
 	payment: IPayment;
 	// Контактные данные
@@ -63,7 +65,7 @@ export interface AppState {
 	// Получение продукта
 	getProduct(id: string): Promise<void>;
 	// Оформление заказа
-	postOrder(): Promise<IOrderResult[]>;
+	postOrder(): Promise<IOrderResult>;
 
 	// Методы для работы с модальными окнами
 	// Открытие модального окна
@@ -72,7 +74,7 @@ export interface AppState {
 
 	// Пользовательские действия
 	// Добавление в корзину
-	addBasket(product: IProduct): void;
+	addToBasket(product: IProduct): void;
 	// Выбор продукта
 	selectProduct(id: string): void; 
 	// Заполнение контактов
