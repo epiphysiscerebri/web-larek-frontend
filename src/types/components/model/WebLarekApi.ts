@@ -3,8 +3,6 @@ export type ApiListResponse<Type> = {
 	items: Type[];
 };
 
-export type PaymentMethod = 'card' | 'cash';
-
 // Описание единицы продукта
 export interface IProduct {
 	id: string;
@@ -23,7 +21,7 @@ export interface IContacts {
 
 // Описание оплаты
 export interface IPayment {
-	payment: PaymentMethod;
+	payment: string;
 	address: string;
 }
 

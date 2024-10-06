@@ -23,9 +23,9 @@ export class AppStateModel implements AppState {
 	// Корзина
 	basket: Map<string, IProduct> = new Map<string, IProduct>();
 
-// Данные об оплате и адресе
+	// Данные об оплате и адресе
 	payment: IPayment = {
-		payment: 'card' || 'cash',
+		payment: 'card',
 		address: '',
 	};
 
@@ -38,7 +38,10 @@ export class AppStateModel implements AppState {
 	// Открытое модальное окно
 	openedModal: AppStateModals = AppStateModals.none;
 
-	constructor(protected api: IWebLarekApi, protected settings: AppStateSettings) {}
+	constructor(
+		protected api: IWebLarekApi,
+		protected settings: AppStateSettings
+	) {}
 
 	// Сумма всех товаров в корзине
 	get basketTotal(): number {
@@ -65,7 +68,7 @@ export class AppStateModel implements AppState {
 	// Продукты в корзине
 	get productsInBasket(): string[] {
 		return Array.from(this.basket.values()).map((product) => {
-			return product.id
+			return product.id;
 		});
 	}
 
@@ -95,8 +98,8 @@ export class AppStateModel implements AppState {
 		if (!this.products.has(id)) {
 			throw new Error(`Invalid movie id: ${id}`);
 		}
-		const product = await this.api.getProduct(id) 
-		this.selectProduct(product.id)
+		const product = await this.api.getProduct(id);
+		this.selectProduct(product.id);
 	}
 
 	// Отправка заказа
@@ -107,8 +110,8 @@ export class AppStateModel implements AppState {
 			this.notifyChanged(AppStateChanges.basket);
 			return result;
 		} catch (err: unknown) {
-			console.log('err', err)
-			return
+			console.log('err', err);
+			return;
 		}
 	}
 
@@ -127,7 +130,7 @@ export class AppStateModel implements AppState {
 			throw new Error(`Invalid movie id: ${id}`);
 		}
 	}
-  
+
 	// Добавление продукта в корзину
 	addToBasket(product: IProduct) {
 		this.basket.set(product.id, product);
@@ -156,10 +159,10 @@ export class AppStateModel implements AppState {
 	isValidContacts(): boolean {
 		const error = this.validateContacts(this.contacts);
 		if (error) {
-			console.log('Контакты заполнены не верно')
+			console.log('Контакты заполнены не верно');
 			return false;
 		} else {
-			console.log('Успешное заполнение контактов')
+			console.log('Успешное заполнение контактов');
 			return true;
 		}
 	}
@@ -177,10 +180,10 @@ export class AppStateModel implements AppState {
 	isValidPayment(): boolean {
 		const error = this.validatePayment(this.payment);
 		if (error) {
-			console.log('Данные по оплате заполнены не верно')
+			console.log('Данные по оплате заполнены не верно');
 			return false;
 		} else {
-			console.log('Успешное заполнение данных по оплате')
+			console.log('Успешное заполнение данных по оплате');
 			return true;
 		}
 	}
