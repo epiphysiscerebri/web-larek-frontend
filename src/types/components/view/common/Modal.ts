@@ -10,6 +10,7 @@ export interface ModalSettings<C> {
 	close: string;
 	content: string;
 	contentView: IView<C>;
+	footer: string;
 	// message: string;
 	actions: HTMLElement[];
 	activeClass: string;

@@ -11,7 +11,7 @@ export const SETTINGS: Settings = {
 		itemClass: 'gallery__item',
 	},
 
-	cardCatalogTemplate: '#card-catalog',
+	cardTemplate: '#card-catalog',
 	cardSettings: {
 		category: '.card__category',
 		title: '.card__title',
@@ -43,6 +43,7 @@ export const SETTINGS: Settings = {
 	modalSettings: {
 		close: '.modal__close',
 		content: '.modal__content',
+		footer: '.modal__footer',
 		activeClass: 'modal_active',
 		messageErrorClass: 'modal__message_error',
 	},

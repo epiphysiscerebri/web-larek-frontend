@@ -7,5 +7,6 @@ export interface MainData {
 
 export interface MainSettings {
 	onOpenBasket: () => void;
+	// баг с передачей ид на главной странице
 	onOpenProduct: (id: string) => void;
 }

@@ -11,7 +11,7 @@ export interface Settings {
 		itemClass: string;
 	};
 
-	cardCatalogTemplate: string;
+	cardTemplate: string;
 	cardSettings: {
 		category: string;
 		title: string;
@@ -43,6 +43,7 @@ export interface Settings {
 	modalSettings: {
 		close: string;
 		content: string;
+		footer: string;
 		activeClass: string;
 		messageErrorClass: string;
 	};

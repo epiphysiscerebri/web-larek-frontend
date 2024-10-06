@@ -1,7 +1,7 @@
 import { IChangeable } from '../../base/View';
 
 export interface PaymentData {
-	payment: "card" | "cash";
+	payment: string;
 	address: string;
 }
 
