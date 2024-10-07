@@ -1,12 +1,23 @@
 import { View } from '../../base/View';
-import { ProductData, ProductSettings } from './../../../types/components/view/partial/Product';
+import {
+	ProductData,
+	ProductSettings,
+} from './../../../types/components/view/partial/Product';
 
 /**
  * Подробное описание продукта
  */
 export class ProductView extends View<ProductData, ProductSettings> {
+	protected declare _item: ProductData;
 	init() {
 		this.isCompact = this.settings.isCompact;
+		this.ensure(this.settings.action).addEventListener(
+			'click',
+			this.onClickHandler.bind(this)
+		);
+	}
+	onClickHandler(event: MouseEvent) {
+		this.settings.onClick({ event, item: this._item });
 	}
 
 	set image(value: string) {

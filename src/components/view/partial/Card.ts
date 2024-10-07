@@ -1,5 +1,8 @@
 import { View } from '../../base/View';
-import { CardData, CardSettings } from './../../../types/components/view/partial/Card';
+import {
+	CardData,
+	CardSettings,
+} from './../../../types/components/view/partial/Card';
 
 /**
  * Маленькая карточка продукта для списка

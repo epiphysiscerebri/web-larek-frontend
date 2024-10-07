@@ -16,17 +16,7 @@ export const SETTINGS: Settings = {
 		category: '.card__category',
 		title: '.card__title',
 		image: '.card__image',
-		price: '.card__price'
-	},
-	
-	productTemplate: '#card-preview',
-	productSettings: {
-		image: '.card__image',
-		category: '.card__category',
-		title: '.card__title',
-		description: '.card__text',
 		price: '.card__price',
-		compactClass: '.card_compact',
 	},
 
 	pageSelector: '.page',
@@ -39,13 +29,30 @@ export const SETTINGS: Settings = {
 
 	// modals settings
 
-	modalTemplate: '#modal',
+	modalTemplate: '#modal-container',
 	modalSettings: {
 		close: '.modal__close',
 		content: '.modal__content',
 		footer: '.modal__footer',
 		activeClass: 'modal_active',
 		messageErrorClass: 'modal__message_error',
+	},
+
+	productTemplate: '#card-preview',
+	productSettings: {
+		action: '.card__button',
+		image: '.card__image',
+		category: '.card__category',
+		title: '.card__title',
+		description: '.card__text',
+		price: '.card__price',
+		compactClass: '.card_compact',
+	},
+	productModal: {
+		title: 'Карточка продукта',
+		nextLabel: '',
+		nextSettings: ['button', { className: 'button' }],
+		totalLabel: 'Итого:',
 	},
 
 	basketTemplate: '#basket',
@@ -62,7 +69,7 @@ export const SETTINGS: Settings = {
 
 	paymentTemplate: '#payment',
 	paymentSettings: {
-		payment: '#card' || '#cash',
+		payment: '#card',
 		address: '#address',
 	},
 	paymentModal: {
@@ -75,7 +82,7 @@ export const SETTINGS: Settings = {
 	contactsTemplate: '#contacts',
 	contactsSettings: {
 		email: '#email',
-		phone: '#phone'
+		phone: '#phone',
 	},
 	contactsModal: {
 		titleEmail: 'Email',
@@ -95,4 +102,7 @@ export const SETTINGS: Settings = {
 		description: 'Cписано: ',
 		action: 'За новыми покупками!',
 	},
-}
+	appState: {
+		formatCurrency: (value: number) => `${value} руб.`,
+	},
+};

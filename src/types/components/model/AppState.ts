@@ -7,7 +7,6 @@ import {
 	IOrderResult,
 } from './WebLarekApi';
 
-
 // Описание событий для модальных окон
 export enum AppStateModals {
 	product = 'modal:product',
@@ -27,7 +26,6 @@ export enum AppStateChanges {
 	payment = 'change:payment',
 	contacts = 'change:contacts',
 	basket = 'change:basket',
-	order = 'change:order'
 }
 
 // Описание Модели данных
@@ -76,7 +74,7 @@ export interface AppState {
 	// Добавление в корзину
 	addToBasket(product: IProduct): void;
 	// Выбор продукта
-	selectProduct(id: string): void; 
+	selectProduct(id: string): void;
 	// Заполнение контактов
 	fillContacts(contacts: Partial<IContacts>): void;
 	// Заполнение адреса и оплаты

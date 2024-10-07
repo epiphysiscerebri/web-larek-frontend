@@ -7,7 +7,6 @@ import { ButtonView } from './../../view/common/Button';
 import { IView } from './../../../types/components/base/View';
 import { ModalScreenSettings } from './../../../types/components/view/screen/ModalScreen';
 
-
 /**
  * Общая логика и структура модальных окон
  */

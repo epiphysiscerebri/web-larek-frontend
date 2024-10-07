@@ -1,14 +1,14 @@
 import { View } from '../../base/View';
+import { ProductView } from '../partial/Product';
 
-import { ModalData, ModalSettings } from './../../../types/components/view/common/Modal';
-
+import {
+	ModalData,
+	ModalSettings,
+} from './../../../types/components/view/common/Modal';
 /**
  * Отображение модального окна
  */
-export class ModalView<C> extends View<
-	ModalData<C>,
-	ModalSettings<C>
-> {
+export class ModalView<C> extends View<ModalData<C>, ModalSettings<C>> {
 	// модальное окно, которое сейчас открыто, оно всегда одно
 	protected static _openedModal: ModalView<unknown> | null;
 
@@ -21,7 +21,9 @@ export class ModalView<C> extends View<
 		// клик по оверлею тоже закрывает модальное окно
 		this.element.addEventListener('click', this.onCloseHandler.bind(this));
 		// добавляем в подвал кнопки из настроек
-		this.ensure(this.settings.footer).prepend(...this.settings.actions);
+		if (this.settings.contentView instanceof ProductView !== true) {
+			this.ensure(this.settings.footer).prepend(...this.settings.actions);
+		}
 	}
 
 	protected onCloseHandler(event?: MouseEvent) {

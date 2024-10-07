@@ -19,16 +19,6 @@ export interface Settings {
 		price: string;
 	};
 
-	productTemplate: string;
-	productSettings: {
-		image: string;
-		category: string;
-		title: string;
-		description: string;
-		price: string;
-		compactClass: string;
-	};
-
 	pageSelector: string;
 	pageSettings: {
 		wrapper: string;
@@ -46,6 +36,23 @@ export interface Settings {
 		footer: string;
 		activeClass: string;
 		messageErrorClass: string;
+	};
+
+	productTemplate: string;
+	productSettings: {
+		action: string;
+		image: string;
+		category: string;
+		title: string;
+		description: string;
+		price: string;
+		compactClass: string;
+	};
+	productModal: {
+		title: string;
+		nextLabel: string;
+		nextSettings: ElementCreator;
+		totalLabel: string;
 	};
 
 	basketTemplate: string;
@@ -94,5 +101,9 @@ export interface Settings {
 		title: string;
 		description: string;
 		action: string;
+	};
+
+	appState: {
+		formatCurrency: (value: number) => string;
 	};
 }
