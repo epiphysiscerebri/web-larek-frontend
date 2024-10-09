@@ -9,33 +9,41 @@ import {
 } from './../../../types/components/view/screen/Basket';
 import { ListView } from './../../view/common/List';
 import { ListData } from './../../../types/components/view/common/List';
-import { CardData } from './../../../types/components/view/partial/Card';
-import { CardView } from '../partial/Card';
+import { ProductInBasketData } from './../../../types/components/view/partial/ProductInBasket';
+import { ProductInBasketView } from '../partial/ProductInBasket';
 
 /**
  * Экран корзины
  */
 export class BasketScreen extends ModalScreen<
-	ListData<CardData>,
+	ListData<ProductInBasketData>,
 	BasketData,
 	BasketSettings
 > {
-
 	initContent() {
-		return new ListView<CardData>(cloneTemplate(SETTINGS.basketTemplate), {
-			...SETTINGS.basketSettings,
-			item: new CardView(cloneTemplate(SETTINGS.cardTemplate), {
-				...SETTINGS.cardSettings,
-				onClick: this.onRemoveProduct.bind(this),
-			}),
-		});
+		return new ListView<ProductInBasketData>(
+			cloneTemplate(SETTINGS.basketTemplate),
+			{
+				...SETTINGS.basketSettings,
+				item: new ProductInBasketView(
+					cloneTemplate(SETTINGS.productInBasketTemplate),
+					{
+						...SETTINGS.productInBasketSettings,
+						onClick: this.onRemoveProduct.bind(this),
+					}
+				),
+			}
+		);
 	}
 
-	protected onRemoveProduct({ item }: IClickableEvent<CardData>) {
+	protected onRemoveProduct({ item }: IClickableEvent<ProductInBasketData>) {
 		this.settings.onRemove(item.id);
 	}
 
-	set products(products: CardData[]) {
+	set products(products: ProductInBasketData[]) {
+		products.forEach((product, idx) => {
+			product.index = idx + 1;
+		});
 		this.modal.content = {
 			items: products,
 		};
@@ -44,7 +52,6 @@ export class BasketScreen extends ModalScreen<
 
 	// Доработать вывод тотл
 	set total(total: string) {
-		console.log(total)
 		// this.modal.message = `${SETTINGS.basketModal.totalLabel} ${total}`;
 	}
 }

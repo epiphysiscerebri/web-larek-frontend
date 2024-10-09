@@ -6,7 +6,7 @@ export interface ProductData {
 	category: string;
 	title: string;
 	description: string;
-	price: number;
+	price: any;
 }
 
 export interface ProductSettings extends IClickable<ProductData> {
@@ -15,7 +15,7 @@ export interface ProductSettings extends IClickable<ProductData> {
 	category: string;
 	title: string;
 	description: string;
-	price: string;
+	price: any;
 	compactClass: string;
 	isCompact?: boolean;
 }

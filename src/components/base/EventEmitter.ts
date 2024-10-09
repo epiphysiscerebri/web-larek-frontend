@@ -1,4 +1,7 @@
-import { EventHandler, EventsMap } from './../../types/components/base/EventEmitter';
+import {
+	EventHandler,
+	EventsMap,
+} from './../../types/components/base/EventEmitter';
 
 export class EventEmitter {
 	protected events: EventsMap;

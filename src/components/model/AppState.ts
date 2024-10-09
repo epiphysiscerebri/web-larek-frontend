@@ -127,13 +127,12 @@ export class AppStateModel implements AppState {
 			this._selectedProduct = id;
 			this.notifyChanged(AppStateChanges.selectedProduct);
 		} else {
-			throw new Error(`Invalid movie id: ${id}`);
+			throw new Error(`Invalid product id: ${id}`);
 		}
 	}
 
 	// Добавление продукта в корзину
 	addToBasket(product: IProduct) {
-		console.log('product', product);
 		this.basket.set(product.id, product);
 		this.notifyChanged(AppStateChanges.basket);
 	}
@@ -141,7 +140,7 @@ export class AppStateModel implements AppState {
 	// Удаление продукта из корзины
 	removeProduct(id: string): void {
 		if (!this.basket.has(id)) {
-			throw new Error(`Invalid ticket key: ${id}`);
+			throw new Error(`Invalid product key: ${id}`);
 		}
 		this.basket.delete(id);
 		this.notifyChanged(AppStateChanges.basket);

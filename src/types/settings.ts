@@ -16,7 +16,7 @@ export interface Settings {
 		category: string;
 		title: string;
 		image: string;
-		price: string;
+		price: any;
 	};
 
 	pageSelector: string;
@@ -45,11 +45,10 @@ export interface Settings {
 		category: string;
 		title: string;
 		description: string;
-		price: string;
+		price: any;
 		compactClass: string;
 	};
 	productModal: {
-		title: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 		totalLabel: string;
@@ -61,10 +60,17 @@ export interface Settings {
 		itemClass: string;
 	};
 	basketModal: {
-		title: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 		totalLabel: string;
+	};
+
+	productInBasketTemplate: string;
+	productInBasketSettings: {
+		index: any;
+		title: string;
+		price: any;
+		delete: string;
 	};
 
 	paymentTemplate: string;
@@ -73,8 +79,6 @@ export interface Settings {
 		address: string;
 	};
 	paymentModal: {
-		titlePayment: string;
-		titleAdress: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 	};
@@ -85,8 +89,6 @@ export interface Settings {
 		phone: string;
 	};
 	contactsModal: {
-		titleEmail: string;
-		titlePhone: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 	};
@@ -98,7 +100,6 @@ export interface Settings {
 		action: string;
 	};
 	successModal: {
-		title: string;
 		description: string;
 		action: string;
 	};

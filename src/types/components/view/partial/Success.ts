@@ -1,7 +1,6 @@
 import { IClickable } from '../../base/View';
 
 export interface SuccessData {
-	title: string;
 	description: string;
 	action?: string;
 }

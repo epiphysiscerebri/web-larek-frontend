@@ -8,7 +8,6 @@ import {
 } from '../../../types/components/view/screen/ProductForm';
 import { ProductData } from './../../../types/components/view/partial/Product';
 import { ProductView } from '../partial/Product';
-import { IClickableEvent } from '../../../types/components/base/View';
 
 /**
  * Экран формы выбраного продукта

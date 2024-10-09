@@ -106,37 +106,26 @@ app.on(AppStateChanges.modal, ({ previous, current }: ModalChange) => {
 // 	});
 // });
 
-// app.on(AppStateChanges.basket, () => {
-// 	main.counter = app.model.basket.size;
-// 	modal[AppStateModals.place].render({
-// 		places: {
-// 			selected: Array.from(app.model.basket.values()),
-// 		},
-// 		isDisabled: app.model.basket.size === 0,
-// 	});
-// 	modal[AppStateModals.basket].tickets = Array.from(
-// 		app.model.basket.values()
-// 	).map((ticket) => {
-// 		return app.model.formatTicketDescription(ticket);
-// 	});
-// });
+app.on(AppStateChanges.basket, () => {
+	main.counter = app.model.basket.size;
+	app.on(AppStateChanges.payment, () => {
+		modal[AppStateModals.payment].render({
+			payment: app.model.payment,
+			isDisabled: !app.model.payment.payment && !app.model.payment.address,
+			isActive: true,
+		});
+	});
+	modal[AppStateModals.basket].products = Array.from(app.model.basket.values());
+});
 
-// app.on(AppStateModals.basket, () => {
-// 	modal[AppStateModals.basket].render({
-// 		header: {
-// 			title: SETTINGS.basketModal.headerTitle,
-// 			description: app.model.basket.size
-// 				? app.model.formatMovieDescription(app.model.getBasketMovie())
-// 				: '',
-// 		},
-// 		tickets: Array.from(app.model.basket.values()).map((ticket) => {
-// 			return app.model.formatTicketDescription(ticket);
-// 		}),
-// 		total: app.model.formatCurrency(app.model.basketTotal),
-// 		isDisabled: app.model.basket.size === 0,
-// 		isActive: true,
-// 	});
-// });
+app.on(AppStateModals.basket, () => {
+	modal[AppStateModals.basket].render({
+		products: Array.from(app.model.basket.values()),
+		total: app.model.basketTotal,
+		isDisabled: app.model.basket.size === 0,
+		isActive: true,
+	});
+});
 
 app.on(AppStateModals.contacts, () => {
 	modal[AppStateModals.contacts].render({
@@ -146,13 +135,13 @@ app.on(AppStateModals.contacts, () => {
 	});
 });
 
-app.on(AppStateChanges.payment, () => {
-	modal[AppStateModals.payment].render({
-		payment: app.model.payment,
-		isDisabled: !app.model.payment.payment && !app.model.payment.address,
-		isActive: true,
-	});
-});
+// app.on(AppStateChanges.payment, () => {
+// 	modal[AppStateModals.payment].render({
+// 		payment: app.model.payment,
+// 		isDisabled: !app.model.payment.payment && !app.model.payment.address,
+// 		isActive: true,
+// 	});
+// });
 
 app.on(AppStateModals.success, () => {
 	modal[AppStateModals.success].render({

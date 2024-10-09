@@ -49,7 +49,6 @@ export const SETTINGS: Settings = {
 		compactClass: '.card_compact',
 	},
 	productModal: {
-		title: 'Карточка продукта',
 		nextLabel: '',
 		nextSettings: ['button', { className: 'button' }],
 		totalLabel: 'Итого:',
@@ -61,10 +60,17 @@ export const SETTINGS: Settings = {
 		itemClass: 'basket__item',
 	},
 	basketModal: {
-		title: 'Корзина',
 		nextLabel: 'Оформить',
 		nextSettings: ['button', { className: 'button' }],
 		totalLabel: 'Итого:',
+	},
+
+	productInBasketTemplate: '#card-basket',
+	productInBasketSettings: {
+		index: '.basket__item-index',
+		title: '.card__title',
+		price: '.card__price',
+		delete: '.basket__item-delete',
 	},
 
 	paymentTemplate: '#payment',
@@ -73,8 +79,6 @@ export const SETTINGS: Settings = {
 		address: '#address',
 	},
 	paymentModal: {
-		titlePayment: 'Способ оплаты',
-		titleAdress: 'Адресс доставки',
 		nextLabel: 'Далее',
 		nextSettings: ['button', { className: 'button' }],
 	},
@@ -85,8 +89,6 @@ export const SETTINGS: Settings = {
 		phone: '#phone',
 	},
 	contactsModal: {
-		titleEmail: 'Email',
-		titlePhone: 'Телефон',
 		nextLabel: 'Далее',
 		nextSettings: ['button', { className: 'button' }],
 	},
@@ -98,7 +100,6 @@ export const SETTINGS: Settings = {
 		action: '.order-success__close',
 	},
 	successModal: {
-		title: 'Заказ оформлен',
 		description: 'Cписано: ',
 		action: 'За новыми покупками!',
 	},

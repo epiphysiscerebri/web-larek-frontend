@@ -5,12 +5,12 @@ export interface CardData {
 	category: string;
 	image: string;
 	title: string;
-	price: number;
+	price: any;
 }
 
 export interface CardSettings extends IClickable<string> {
 	category: string;
 	title: string;
 	image: string;
-	price: string;
+	price: any;
 }

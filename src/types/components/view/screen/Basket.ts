@@ -1,12 +1,10 @@
 import { ProductData } from './../partial/Product';
 
-
-
 export interface BasketData {
 	products: ProductData[];
 	isActive: boolean;
 	isDisabled: boolean;
-	total: string;
+	total: number;
 }
 
 export interface BasketSettings {
