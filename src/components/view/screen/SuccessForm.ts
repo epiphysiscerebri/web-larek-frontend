@@ -17,13 +17,14 @@ export class SuccessScreen extends Screen<
 	SuccessFormData,
 	SuccessFormSettings
 > {
-	protected declare modal: ModalView<SuccessData>;
+	protected declare modal: ModalView<never, SuccessData>;
 
 	init() {
-		this.modal = new ModalView<SuccessData>(
+		this.modal = new ModalView<never, SuccessData>(
 			cloneTemplate(SETTINGS.modalTemplate),
 			{
 				...SETTINGS.modalSettings,
+				headerView: null,
 				contentView: new SuccessView(cloneTemplate(SETTINGS.successTemplate), {
 					...SETTINGS.successSettings,
 					onClick: this.settings.onClose,

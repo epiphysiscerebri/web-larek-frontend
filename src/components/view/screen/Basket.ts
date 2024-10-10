@@ -9,6 +9,8 @@ import {
 } from './../../../types/components/view/screen/Basket';
 import { ListView } from './../../view/common/List';
 import { ListData } from './../../../types/components/view/common/List';
+import { HeaderData } from './../../../types/components/view/common/Header';
+import { HeaderView } from './../../../components/view/common/Header';
 import { ProductInBasketData } from './../../../types/components/view/partial/ProductInBasket';
 import { ProductInBasketView } from '../partial/ProductInBasket';
 
@@ -16,10 +18,17 @@ import { ProductInBasketView } from '../partial/ProductInBasket';
  * Экран корзины
  */
 export class BasketScreen extends ModalScreen<
+	HeaderData,
 	ListData<ProductInBasketData>,
 	BasketData,
 	BasketSettings
 > {
+	initHeader() {
+		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
+			...SETTINGS.headerSettings,
+		});
+	}
+
 	initContent() {
 		return new ListView<ProductInBasketData>(
 			cloneTemplate(SETTINGS.basketTemplate),

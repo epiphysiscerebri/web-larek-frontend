@@ -8,16 +8,25 @@ import {
 } from '../../../types/components/view/screen/PaymentForm';
 import { PaymentData } from './../../../types/components/view/partial/Payment';
 import { PaymentView } from '../partial/Payment';
+import { HeaderData } from './../../../types/components/view/common/Header';
+import { HeaderView } from './../../../components/view/common/Header';
 import { IChangeableEvent } from '../../../types/components/base/View';
 
 /**
  * Экран формы оплаты
  */
 export class PaymentFormScreen extends ModalScreen<
+	HeaderData,
 	PaymentData,
 	PaymentFormData,
 	PaymentFormSettings
 > {
+	initHeader() {
+		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
+			...SETTINGS.headerSettings,
+		});
+	}
+
 	initContent() {
 		return new PaymentView(cloneTemplate(SETTINGS.paymentTemplate), {
 			...SETTINGS.paymentSettings,

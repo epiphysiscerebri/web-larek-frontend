@@ -8,9 +8,12 @@ import {
 /**
  * Отображение модального окна
  */
-export class ModalView<C> extends View<ModalData<C>, ModalSettings<C>> {
+export class ModalView<H, C> extends View<
+	ModalData<H, C>,
+	ModalSettings<H, C>
+> {
 	// модальное окно, которое сейчас открыто, оно всегда одно
-	protected static _openedModal: ModalView<unknown> | null;
+	protected static _openedModal: ModalView<unknown, unknown> | null;
 
 	protected init() {
 		// слушаем клик по иконке закрыть
@@ -57,6 +60,19 @@ export class ModalView<C> extends View<ModalData<C>, ModalSettings<C>> {
 	}
 
 	// Проброс данных во вложенные отображения
+
+	set header(data: H | undefined) {
+		if (data) {
+			this.setValue(
+				this.settings.header,
+				this.settings.headerView.render(data)
+			);
+			this.setVisibility(this.settings.header, true);
+		} else {
+			this.setVisibility(this.settings.header, false);
+		}
+	}
+
 	set content(data: C) {
 		this.setValue(
 			this.settings.content,

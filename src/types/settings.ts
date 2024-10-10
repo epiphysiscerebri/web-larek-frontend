@@ -29,9 +29,15 @@ export interface Settings {
 
 	// modals settings
 
+	headerTemplate: string;
+	headerSettings: {
+		title: string;
+	};
+
 	modalTemplate: string;
 	modalSettings: {
 		close: string;
+		header: string;
 		content: string;
 		footer: string;
 		activeClass: string;
@@ -49,6 +55,7 @@ export interface Settings {
 		compactClass: string;
 	};
 	productModal: {
+		headerTitle: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 		totalLabel: string;
@@ -60,6 +67,7 @@ export interface Settings {
 		itemClass: string;
 	};
 	basketModal: {
+		headerTitle: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 		totalLabel: string;
@@ -79,6 +87,7 @@ export interface Settings {
 		address: string;
 	};
 	paymentModal: {
+		headerTitle: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 	};
@@ -89,6 +98,7 @@ export interface Settings {
 		phone: string;
 	};
 	contactsModal: {
+		headerTitle: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 	};
@@ -100,6 +110,7 @@ export interface Settings {
 		action: string;
 	};
 	successModal: {
+		headerTitle: string;
 		description: string;
 		action: string;
 	};

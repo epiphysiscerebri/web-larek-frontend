@@ -29,8 +29,14 @@ export const SETTINGS: Settings = {
 
 	// modals settings
 
+	headerTemplate: '#modal-head',
+	headerSettings: {
+		title: '.modal__title',
+	},
+
 	modalTemplate: '#modal-container',
 	modalSettings: {
+		header: '.modal__header',
 		close: '.modal__close',
 		content: '.modal__content',
 		footer: '.modal__footer',
@@ -49,6 +55,7 @@ export const SETTINGS: Settings = {
 		compactClass: '.card_compact',
 	},
 	productModal: {
+		headerTitle: '',
 		nextLabel: '',
 		nextSettings: ['button', { className: 'button' }],
 		totalLabel: 'Итого:',
@@ -60,6 +67,7 @@ export const SETTINGS: Settings = {
 		itemClass: 'basket__item',
 	},
 	basketModal: {
+		headerTitle: 'Корзина',
 		nextLabel: 'Оформить',
 		nextSettings: ['button', { className: 'button' }],
 		totalLabel: 'Итого:',
@@ -79,6 +87,7 @@ export const SETTINGS: Settings = {
 		address: '#address',
 	},
 	paymentModal: {
+		headerTitle: 'Способ оплаты',
 		nextLabel: 'Далее',
 		nextSettings: ['button', { className: 'button' }],
 	},
@@ -89,6 +98,7 @@ export const SETTINGS: Settings = {
 		phone: '#phone',
 	},
 	contactsModal: {
+		headerTitle: 'Email',
 		nextLabel: 'Далее',
 		nextSettings: ['button', { className: 'button' }],
 	},
@@ -100,6 +110,7 @@ export const SETTINGS: Settings = {
 		action: '.order-success__close',
 	},
 	successModal: {
+		headerTitle: '',
 		description: 'Cписано: ',
 		action: 'За новыми покупками!',
 	},

@@ -120,6 +120,9 @@ app.on(AppStateChanges.basket, () => {
 
 app.on(AppStateModals.basket, () => {
 	modal[AppStateModals.basket].render({
+		header: {
+			title: SETTINGS.basketModal.headerTitle,
+		},
 		products: Array.from(app.model.basket.values()),
 		total: app.model.basketTotal,
 		isDisabled: app.model.basket.size === 0,

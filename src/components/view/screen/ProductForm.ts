@@ -8,30 +8,24 @@ import {
 } from '../../../types/components/view/screen/ProductForm';
 import { ProductData } from './../../../types/components/view/partial/Product';
 import { ProductView } from '../partial/Product';
+import { HeaderData } from './../../../types/components/view/common/Header';
+import { HeaderView } from './../../../components/view/common/Header';
 
 /**
  * Экран формы выбраного продукта
  */
 export class ProductFormScreen extends ModalScreen<
+	HeaderData,
 	ProductData,
 	ProductFormData,
 	ProductFormSettings
 > {
 	protected declare _item: ProductData;
-	protected init(): void {
-		this.nextButton = this.getNextButton(
-			SETTINGS.productModal,
-			this.settings.onNext
-		);
 
-		this.modal = this.getModalView(
-			{
-				contentView: this.initContent(),
-			},
-			this.settings.onClose
-		);
-
-		this.element = this.modal.element;
+	initHeader() {
+		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
+			...SETTINGS.headerSettings,
+		});
 	}
 
 	initContent() {
