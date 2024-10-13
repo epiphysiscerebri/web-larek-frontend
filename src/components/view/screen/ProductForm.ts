@@ -43,10 +43,4 @@ export class ProductFormScreen extends ModalScreen<
 		this._item = value;
 		this.modal.content = value;
 	}
-
-	// Доработать вывод тотл
-	set total(total: string) {
-		console.log(total);
-		// this.modal.message = `${SETTINGS.orderModal.totalLabel} ${total}`;
-	}
 }

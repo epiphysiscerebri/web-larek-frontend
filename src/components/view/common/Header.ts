@@ -6,7 +6,7 @@ import {
 } from './../../../types/components/view/common/Header';
 
 /**
- * Шапка с заголовком.
+ * Шапка с заголовком
  */
 export class HeaderView extends View<HeaderData, HeaderSettings> {
 	init() {}
