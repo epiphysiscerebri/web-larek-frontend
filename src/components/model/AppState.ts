@@ -17,6 +17,9 @@ export class AppStateModel implements AppState {
 	// Выбраный продукт
 	_selectedProduct: string | null = null;
 
+	// Ответ сервера на запрос о совершении заказа
+	responseOrder: {} = {};
+
 	// Массив с продуктами
 	products: Map<string, IProduct> = new Map<string, IProduct>();
 
@@ -25,7 +28,7 @@ export class AppStateModel implements AppState {
 
 	// Данные об оплате и адресе
 	payment: IPayment = {
-		payment: 'card',
+		payment: '',
 		address: '',
 	};
 
@@ -105,7 +108,10 @@ export class AppStateModel implements AppState {
 	// Отправка заказа
 	async postOrder(): Promise<IOrderResult> {
 		try {
-			const result = await this.api.postOrder(this.order);
+			const result = await this.api.postOrder(this.order).then((response) => {
+				this.responseOrder = response;
+				return response;
+			});
 			this.basket.clear();
 			this.notifyChanged(AppStateChanges.basket);
 			return result;

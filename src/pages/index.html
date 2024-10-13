@@ -41,7 +41,9 @@
 					<button class="modal__close" aria-label="закрыть"></button>
 					<div class="modal__header"></div>
 					<div class="modal__content"></div>
-					<div class="modal__footer"></div>
+					<div class="modal__footer">
+						<span class="modal__message"></span>
+					</div>
 				</div>
 			</div>
 		</template>
@@ -147,9 +149,6 @@
 									placeholder="Введите адрес"
 								/>
 							</label>
-						</div>
-						<div class="modal__actions">
-							<button disabled class="button">Далее</button>
 						</div>
 					</form>
 				</div>
@@ -259,7 +258,6 @@
 				<h2 class="modal__title">Корзина</h2>
 				<ul class="basket__list"></ul>
 				<div class="modal__actions">
-					<button class="button basket__button">Оформить</button>
 					<span class="basket__price">0 синапсов</span>
 				</div>
 			</div>
@@ -301,9 +299,6 @@
 					</label>
 				</div>
 				<div class="modal__actions">
-					<button type="submit" disabled class="button order__button">
-						Далее
-					</button>
 					<span class="form__errors"></span>
 				</div>
 			</form>
@@ -334,7 +329,6 @@
 					</label>
 				</div>
 				<div class="modal__actions">
-					<button type="submit" disabled class="button">Оплатить</button>
 					<span class="form__errors"></span>
 				</div>
 			</form>

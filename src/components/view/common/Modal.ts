@@ -80,6 +80,15 @@ export class ModalView<H, C> extends View<
 		);
 	}
 
+	set message(value: string | undefined) {
+		if (value) {
+			this.setValue(this.settings.message, value);
+			this.setVisibility(this.settings.message, true);
+		} else {
+			this.setVisibility(this.settings.message, false);
+		}
+	}
+
 	// Открытие и закрытие модального окна
 	set isActive(state: boolean) {
 		if (state) {

@@ -9,6 +9,9 @@ export class PaymentController extends Controller<AppState> {
 	onChange = (value: PaymentData) => {
 		this.model.fillPayment(value);
 	};
+	onClick = (item: PaymentData) => {
+		this.model.fillPayment(item);
+	};
 	onNext = async () => {
 		if (this.model.isValidPayment()) {
 			this.model.openModal(AppStateModals.contacts);

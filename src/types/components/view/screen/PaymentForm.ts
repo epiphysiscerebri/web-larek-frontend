@@ -8,6 +8,7 @@ export interface PaymentFormData {
 
 export interface PaymentFormSettings {
 	onChange: (data: PaymentData) => void;
+	onClick: (data: PaymentData) => void;
 	onClose: () => void;
 	onNext: () => void;
 }

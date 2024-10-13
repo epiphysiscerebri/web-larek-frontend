@@ -3,7 +3,7 @@ import { IView } from '../../base/View';
 export interface ModalData<H, C> {
 	header?: H;
 	content: C;
-	// message?: string;
+	message?: string;
 	isActive: boolean;
 }
 
@@ -14,7 +14,7 @@ export interface ModalSettings<H, C> {
 	headerView: IView<H>;
 	contentView: IView<C>;
 	footer: string;
-	// message: string;
+	message?: string;
 	actions: HTMLElement[];
 	activeClass: string;
 	messageErrorClass: string;

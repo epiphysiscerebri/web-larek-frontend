@@ -14,7 +14,6 @@ export class CardView extends View<CardData, CardSettings> {
 		this.element.addEventListener('click', this.onClickHandler.bind(this));
 	}
 
-	// Вероятно тут нужно будет менять тип данных передавающихся в item
 	onClickHandler(event: MouseEvent) {
 		this.settings.onClick({ event, item: this.id });
 	}
@@ -36,8 +35,11 @@ export class CardView extends View<CardData, CardSettings> {
 		this.setValue(this.settings.category, value);
 	}
 
-	// Может быть поменять value на число
 	set price(value: string) {
+		if (typeof value === 'number') {
+			value = value + ' синапсов';
+		}
+
 		this.setValue(this.settings.price, value);
 	}
 }

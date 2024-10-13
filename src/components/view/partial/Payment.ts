@@ -8,14 +8,46 @@ import {
  * Форма с оплатой
  */
 export class PaymentView extends View<PaymentData, PaymentSettings> {
+	protected _paymentCard: HTMLButtonElement;
+	protected _paymentCash: HTMLButtonElement;
+	protected _paymentButtonsContainer: HTMLElement;
 	init() {
+		this._paymentCard = this.ensure<HTMLButtonElement>('#card', this.element);
+		this._paymentCash = this.ensure<HTMLButtonElement>('#cash', this.element);
+		this._paymentButtonsContainer = this.ensure<HTMLElement>(
+			'.order__buttons',
+			this.element
+		);
+
+		this._paymentCard.addEventListener('click', () => {
+			this.payment = 'card';
+			this._paymentCash.classList.remove('button_alt-active');
+			this._paymentCard.classList.add('button_alt-active');
+		});
+
+		this._paymentCash.addEventListener('click', () => {
+			this.payment = 'cash';
+			this._paymentCard.classList.remove('button_alt-active');
+			this._paymentCash.classList.add('button_alt-active');
+		});
+
+		this._paymentButtonsContainer.addEventListener(
+			'click',
+			this.onClickHandler.bind(this)
+		);
+
 		this.element.addEventListener('submit', this.onSubmitHandler.bind(this));
-		this.element.addEventListener('change', this.onSubmitHandler.bind(this));
+		this.element.addEventListener('blur', this.onSubmitHandler.bind(this));
 	}
 
 	onSubmitHandler(event: SubmitEvent) {
 		event.preventDefault();
 		this.settings.onChange({ event, value: this.data });
+		return false;
+	}
+
+	onClickHandler(event: MouseEvent) {
+		this.settings.onClick({ event, item: this.data });
 		return false;
 	}
 
@@ -38,3 +70,17 @@ export class PaymentView extends View<PaymentData, PaymentSettings> {
 		};
 	}
 }
+
+// this._paymentCard.addEventListener('click', () => {
+// 	this.payment = 'card';
+// 	this.onClickHandler.bind(this);
+// 	this._paymentCash.classList.remove('button_alt-active');
+// 	this._paymentCard.classList.add('button_alt-active');
+// });
+
+// this._paymentCash.addEventListener('click', () => {
+// 	this.payment = 'cash';
+// 	this.onClickHandler.bind(this);
+// 	this._paymentCard.classList.remove('button_alt-active');
+// 	this._paymentCash.classList.add('button_alt-active');
+// });

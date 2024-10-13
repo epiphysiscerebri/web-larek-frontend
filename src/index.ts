@@ -58,64 +58,10 @@ app.on(AppStateChanges.modal, ({ previous, current }: ModalChange) => {
 	}
 });
 
-// app.on(AppStateChanges.modalMessage, () => {
-// 	if (app.model.openedModal !== AppStateModals.none) {
-// 		modal[app.model.openedModal].render({
-// 			message: app.model.modalMessage,
-// 			isError: app.model.isError,
-// 		});
-// 	}
-// });
-
-// app.on(AppStateModals.session, () => {
-// 	modal[AppStateModals.session].render({
-// 		film: app.model.selectedMovie,
-// 		schedule: {
-// 			sessions: Array.from(app.model.movieSessions.values()),
-// 			selected: null,
-// 		},
-// 		isActive: true,
-// 		isDisabled: !app.model.selectedSession,
-// 	});
-// });
-
-// app.on(AppStateChanges.selectedSession, () => {
-// 	modal[AppStateModals.session].isDisabled = !app.model.selectedSession;
-// });
-
-// app.on(AppStateModals.place, () => {
-// 	modal[AppStateModals.place].render({
-// 		header: {
-// 			title: SETTINGS.placesModal.headerTitle,
-// 			description: app.model.formatMovieDescription({
-// 				title: app.model.selectedMovie.title,
-// 				day: app.model.selectedSession.day,
-// 				time: app.model.selectedSession.time,
-// 			}),
-// 		},
-// 		places: {
-// 			hall: {
-// 				rows: app.model.selectedSession.rows,
-// 				seats: app.model.selectedSession.seats,
-// 			},
-// 			selected: Array.from(app.model.basket.values()),
-// 			taken: app.model.selectedSession.taken,
-// 		},
-// 		isActive: true,
-// 		isDisabled: app.model.basket.size === 0,
-// 	});
-// });
-
 app.on(AppStateChanges.basket, () => {
 	main.counter = app.model.basket.size;
-	app.on(AppStateChanges.payment, () => {
-		modal[AppStateModals.payment].render({
-			payment: app.model.payment,
-			isDisabled: !app.model.payment.payment && !app.model.payment.address,
-			isActive: true,
-		});
-	});
 	modal[AppStateModals.basket].products = Array.from(app.model.basket.values());
+	modal[AppStateModals.basket].total = String(app.model.basketTotal);
 });
 
 app.on(AppStateModals.basket, () => {
@@ -130,25 +76,49 @@ app.on(AppStateModals.basket, () => {
 	});
 });
 
-app.on(AppStateModals.contacts, () => {
-	modal[AppStateModals.contacts].render({
-		contacts: app.model.contacts,
-		isDisabled: !app.model.contacts.email && !app.model.contacts.phone,
+app.on(AppStateModals.payment, () => {
+	modal[AppStateModals.payment].render({
+		payment: app.model.payment,
+		isDisabled:
+			!app.model.payment.payment.length || !app.model.payment.address.length,
 		isActive: true,
 	});
 });
 
-// app.on(AppStateChanges.payment, () => {
-// 	modal[AppStateModals.payment].render({
-// 		payment: app.model.payment,
-// 		isDisabled: !app.model.payment.payment && !app.model.payment.address,
-// 		isActive: true,
-// 	});
-// });
+app.on(AppStateChanges.payment, () => {
+	modal[AppStateModals.payment].render({
+		payment: app.model.payment,
+		isDisabled:
+			!app.model.payment.payment.length || !app.model.payment.address.length,
+		isActive: true,
+	});
+});
+
+app.on(AppStateModals.contacts, () => {
+	modal[AppStateModals.contacts].render({
+		contacts: app.model.contacts,
+		isDisabled:
+			!app.model.contacts.email.length || !app.model.contacts.phone.length,
+		isActive: true,
+	});
+});
+
+app.on(AppStateChanges.contacts, () => {
+	modal[AppStateModals.contacts].render({
+		contacts: app.model.contacts,
+		isDisabled:
+			!app.model.contacts.email.length || !app.model.contacts.phone.length,
+		isActive: true,
+	});
+});
 
 app.on(AppStateModals.success, () => {
 	modal[AppStateModals.success].render({
-		content: SETTINGS.successModal,
+		content: {
+			...SETTINGS.successModal,
+			description: app.model.responseOrder.total,
+		},
+
 		isActive: true,
 	});
 });

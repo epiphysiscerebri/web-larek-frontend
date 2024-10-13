@@ -40,6 +40,7 @@ export const SETTINGS: Settings = {
 		close: '.modal__close',
 		content: '.modal__content',
 		footer: '.modal__footer',
+		message: '.modal__message',
 		activeClass: 'modal_active',
 		messageErrorClass: 'modal__message_error',
 	},
@@ -87,7 +88,6 @@ export const SETTINGS: Settings = {
 		address: '#address',
 	},
 	paymentModal: {
-		headerTitle: 'Способ оплаты',
 		nextLabel: 'Далее',
 		nextSettings: ['button', { className: 'button' }],
 	},
@@ -98,7 +98,6 @@ export const SETTINGS: Settings = {
 		phone: '#phone',
 	},
 	contactsModal: {
-		headerTitle: 'Email',
 		nextLabel: 'Далее',
 		nextSettings: ['button', { className: 'button' }],
 	},
@@ -110,11 +109,8 @@ export const SETTINGS: Settings = {
 		action: '.order-success__close',
 	},
 	successModal: {
-		headerTitle: '',
 		description: 'Cписано: ',
 		action: 'За новыми покупками!',
 	},
-	appState: {
-		formatCurrency: (value: number) => `${value} руб.`,
-	},
+	appState: {},
 };

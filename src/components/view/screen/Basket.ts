@@ -59,8 +59,7 @@ export class BasketScreen extends ModalScreen<
 		this.nextButton.disabled = !products.length;
 	}
 
-	// Доработать вывод тотл
 	set total(total: string) {
-		// this.modal.message = `${SETTINGS.basketModal.totalLabel} ${total}`;
+		this.modal.message = `${SETTINGS.basketModal.totalLabel} ${total} синапсов`;
 	}
 }

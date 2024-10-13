@@ -40,6 +40,7 @@ export interface Settings {
 		header: string;
 		content: string;
 		footer: string;
+		message?: string;
 		activeClass: string;
 		messageErrorClass: string;
 	};
@@ -87,7 +88,6 @@ export interface Settings {
 		address: string;
 	};
 	paymentModal: {
-		headerTitle: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 	};
@@ -98,7 +98,6 @@ export interface Settings {
 		phone: string;
 	};
 	contactsModal: {
-		headerTitle: string;
 		nextLabel: string;
 		nextSettings: ElementCreator;
 	};
@@ -110,12 +109,9 @@ export interface Settings {
 		action: string;
 	};
 	successModal: {
-		headerTitle: string;
-		description: string;
+		description: any;
 		action: string;
 	};
 
-	appState: {
-		formatCurrency: (value: number) => string;
-	};
+	appState: {};
 }

@@ -21,6 +21,23 @@ export class ContactsFormScreen extends ModalScreen<
 	ContactsFormData,
 	ContactsFormSettings
 > {
+	protected init() {
+		this.nextButton = this.getNextButton(
+			SETTINGS.contactsModal,
+			this.settings.onNext
+		);
+
+		this.modal = this.getModalView(
+			{
+				headerView: this.initHeader(),
+				contentView: this.initContent(),
+			},
+			this.settings.onClose
+		);
+
+		this.element = this.modal.element;
+	}
+
 	initHeader() {
 		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
 			...SETTINGS.headerSettings,
@@ -40,11 +57,5 @@ export class ContactsFormScreen extends ModalScreen<
 
 	set contacts(value: ContactsData) {
 		this.modal.content = value;
-	}
-
-	// Доработать вывод тотл
-	set total(total: string) {
-		console.log(total);
-		// this.modal.message = `${SETTINGS.orderModal.totalLabel} ${total}`;
 	}
 }

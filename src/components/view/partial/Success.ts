@@ -24,8 +24,8 @@ export class SuccessView extends View<SuccessData, SuccessSettings> {
 		this.setValue(this.settings.title, value);
 	}
 
-	set description(value: string) {
-		this.setValue(this.settings.description, value);
+	set description(value: any) {
+		this.setValue(this.settings.description, `Списано: ${value} синапсов`);
 	}
 
 	set action(value: string) {
