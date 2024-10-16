@@ -70,9 +70,11 @@ export class AppStateModel implements AppState {
 
 	// Продукты в корзине
 	get productsInBasket(): string[] {
-		return Array.from(this.basket.values()).map((product) => {
-			return product.id;
-		});
+		return Array.from(this.basket.values())
+			.filter((product) => product.price)
+			.map((product) => {
+				return product.id;
+			});
 	}
 
 	// Формирование заказа
