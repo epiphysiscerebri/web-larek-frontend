@@ -130,11 +130,11 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 		value: ElementValue<T>
 	) {
 		const el = query instanceof HTMLElement ? query : this.ensure(query);
-		if (typeof value === 'string' || typeof value === 'number')
+		if (typeof value === 'string' || typeof value === 'number') {
 			el.textContent = value;
-		else if (value === null) el.textContent = 'Бесценно';
-		else if (isChildElement(value)) setElementChildren(el, value);
-		else if (isPlainObject(value)) {
+		} else if (isChildElement(value)) {
+			setElementChildren(el, value);
+		} else if (isPlainObject(value)) {
 			setElementProps<T>(el, value as ElementProps<T>);
 		} else {
 			throw new Error('Unknown value type');

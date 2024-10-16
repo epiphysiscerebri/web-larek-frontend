@@ -10,12 +10,16 @@ import {
 export class ContactsView extends View<ContactsData, ContactsSettings> {
 	init() {
 		this.element.addEventListener('submit', this.onSubmitHandler.bind(this));
-		this.element.addEventListener('change', this.onSubmitHandler.bind(this));
+		this.element.addEventListener('input', this.onSubmitHandler.bind(this));
 	}
 
 	onSubmitHandler(event: SubmitEvent) {
 		event.preventDefault();
 		this.settings.onChange({ event, value: this.data });
+		this.ensure<HTMLInputElement>(
+			'#' + (event.target as HTMLInputElement).id,
+			this.element
+		).focus();
 		return false;
 	}
 

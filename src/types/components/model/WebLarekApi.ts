@@ -27,7 +27,7 @@ export interface IPayment {
 
 // Описание заказа
 export interface IOrder extends IContacts, IPayment {
-	total: number;
+	total: number | null;
 	items: string[];
 }
 

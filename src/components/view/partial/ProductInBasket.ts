@@ -35,6 +35,8 @@ export class ProductInBasketView extends View<
 	set price(value: string) {
 		if (typeof value === 'number') {
 			value = value + ' синапсов';
+		} else if (!value) {
+			value = 'Бесценно';
 		}
 		this.setValue(this.settings.price, value);
 	}

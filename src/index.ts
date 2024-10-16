@@ -62,6 +62,15 @@ app.on(AppStateChanges.basket, () => {
 	main.counter = app.model.basket.size;
 	modal[AppStateModals.basket].products = Array.from(app.model.basket.values());
 	modal[AppStateModals.basket].total = String(app.model.basketTotal);
+	modal[AppStateModals.basket].render({
+		header: {
+			title: SETTINGS.basketModal.headerTitle,
+		},
+		products: Array.from(app.model.basket.values()),
+		total: app.model.basketTotal,
+		isDisabled: !app.model.basketTotal,
+		isActive: true,
+	});
 });
 
 app.on(AppStateModals.basket, () => {
@@ -71,7 +80,7 @@ app.on(AppStateModals.basket, () => {
 		},
 		products: Array.from(app.model.basket.values()),
 		total: app.model.basketTotal,
-		isDisabled: app.model.basket.size === 0,
+		isDisabled: !app.model.basketTotal,
 		isActive: true,
 	});
 });
@@ -97,8 +106,7 @@ app.on(AppStateChanges.payment, () => {
 app.on(AppStateModals.contacts, () => {
 	modal[AppStateModals.contacts].render({
 		contacts: app.model.contacts,
-		isDisabled:
-			!app.model.contacts.email.length || !app.model.contacts.phone.length,
+		isDisabled: !app.model.isValidContacts(),
 		isActive: true,
 	});
 });
@@ -106,8 +114,7 @@ app.on(AppStateModals.contacts, () => {
 app.on(AppStateChanges.contacts, () => {
 	modal[AppStateModals.contacts].render({
 		contacts: app.model.contacts,
-		isDisabled:
-			!app.model.contacts.email.length || !app.model.contacts.phone.length,
+		isDisabled: !app.model.isValidContacts(),
 		isActive: true,
 	});
 });

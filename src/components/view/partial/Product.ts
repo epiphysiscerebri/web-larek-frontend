@@ -34,6 +34,8 @@ export class ProductView extends View<ProductData, ProductSettings> {
 	set price(value: string) {
 		if (typeof value === 'number') {
 			value = value + ' синапсов';
+		} else if (!value) {
+			value = 'Бесценно';
 		}
 		this.setValue(this.settings.price, value);
 	}
