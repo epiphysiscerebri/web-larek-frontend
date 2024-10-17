@@ -219,3 +219,282 @@ class Controller {
 ```
 
 Обычно при использовании контроллеров бизнес-логику перераспределяют так, что в моделях не принимаются решения, а только изменяются данные с соблюдением их взаимозависимостей. В контроллерах же происходит обработка событий и принятие решений, а также обновление данных в моделях. Но это не строгое правило и в зависимости от проекта можно использовать разные подходы, например в этом проекте используется несколько реализаций архитектуры в разных ветках и чтобы не переносить много кода модель реализует практически всю логику, что несколько упрощает роль контроллеров.
+
+### Описание классов использующихся на проекте
+
+Каталог components/base
+
+Класс Api.
+Класс Api - это базовый класс для работы с API. Его функции: возможность делать post и get запросы, а также обрабатывать ответы от сервера.
+
+Класс Controller.
+Класс Controller выполняет функицю контроллера в паттерне MVC.
+
+Класс EventEmitter.
+Класс EventEmitter обеспечивает работу событий. Его функции: возможность установить и снять слушателей событий, вызвать слушателей при возникновении события.
+
+Класс Screen.
+Класс Screen является абтрактным, принимает на вход в качестве дженериков два аргумента тип и настройки, наследуется от базового класса View. Является родительским для родительского класса экранов ModalScreen, которые используются на проекте. Также является родительским для класса экана главной страницы MainScreen.
+
+Класс View.
+Класс View является абтрактным, принимает на вход в качестве дженериков два аргумента тип и настройки. Является базовым классом для отображения на проекте. Его функции: копирующий конструктор, чтобы настроить один раз и дальше использовать копии отображения везде, метод рендер, вызывается когда надо обновить отображение с данными, методы жизненного цикла, метод поиска DOM-элементов, метод замены элемента на другой или его обновлённую версию, метод поиска темплейта, метод создания DOM-элемента, метод для установки видимости, метод для универсальной установки свойств тега.
+
+Каталог components/controller
+
+Класс ModalController.
+Класс ModalController наследуется от класса контроллера, является контроллером для сущности Success. Его функции: Нажатие на кнопку закрытия модального окна.
+
+Класс MainController.
+Класс MainController наследуется от класса контроллера, является контроллером для сущности Main. Его функции: Обращение к моделе, открытие корзины с товарами, выбор конкретного товара из галереи с последующем запросом конкретного товара через модель.
+
+Класс BasketController.
+Класс BasketController наследуется от класса контроллера, является контроллером для сущности Basket. Его функции: Обращение к моделе, в частности удаление из модели элемента корзины, нажатие на кнопку "Оформить" и дальнейший переход к модальному окну выбора способа оплаты, нажатие на кнопку закрытия модального окна.
+
+Класс PaymentController.
+Класс PaymentController наследуется от класса контроллера, является контроллером для сущности Payment. Его функции: Обращение к моделе, в частности валидация введённых данных в окно оплаты, нажатие на кнопку "Далее", переход к модальному окну контактов, нажатие на кнопку закрытия модального окна.
+
+Класс ContactsController.
+Класс ContactsController наследуется от класса контроллера, является контроллером для сущности Contacts. Его функции: Обращение к моделе, в частности валидация введённых данных в окно контактов, нажатие на кнопку "Далее", дальнейшая отправка запроса оформления заказа через обращение к моделе и переход к модальному окну завершения заказа, нажатие на кнопку закрытия модального окна.
+
+Класс ProductController.
+Класс ProductController наследуется от класса контроллера, является контроллером для сущности Product. Его функции: Обращение к моделе, в частности добавление выбраного товара в корзину, переход к модальному окну корзины, нажатие на кнопку закрытия модального окна.
+
+Каталог components/model
+
+Класс AppStateModel.
+Класс AppStateModel является общим хранилищем состояний приложения.
+Его свойства:
+protected _selectedProduct - Выбраный продукт (служебное свойство),
+responseOrder - Ответ сервера на запрос о совершении заказа,
+products - Массив с продуктами в галерее,
+basket - Корзина, payment - Данные об оплате и адресе,
+contacts - Контактные данные,
+openedModal - Открытое модальное окно.
+
+Его геттеры:
+get basketTotal() - Сумма всех товаров в корзине,
+get isOrderReady() - Проверка на то, правильно ли оформлен заказ,
+get selectedProduct() - Выбраный продукт,
+get productsInBasket() - Продукты в корзине,
+order() - Формирование заказа.
+
+Его функции:
+selectProduct(id: string | null): void - Выбор продукта из галереи,
+addToBasket(product: IProduct) - Добавление продукта в корзину,
+removeProduct(id: string): void - Удаление продукта из корзины,
+fillContacts(contacts: Partial<IContacts>): void - Заполнение контактов,
+isValidContacts(): boolean - Тригер на корректность заполнения контактов,
+fillPayment(payment: Partial<IPayment>): void - Заполнение оплаты,
+isValidPayment(): boolean - Тригер на корректность заполнения оплаты,
+openModal(modal: AppStateModals): void - Открытие одального окна,
+protected notifyChanged(changed: AppStateChanges): void - Обновление модели,
+protected validateContacts(contacts: Partial<IContacts>): string | null - Валидация контактов,
+protected validatePayment(payment: Partial<IPayment>): string | null - Валидация оплаты.
+
+Класс AppStateEmitter.
+Класс AppStateEmitter является обёрткой модели. Все изменения данных происходят через методы модели, а она в свою очередь уведомляет об изменениях через метод настроек onChange. При обработке событий возникающих в AppStateEmitter производится обновление данных в верхнеуровневых отображениях.
+Его свойства:
+model - Экземпляр модели,
+previousModal - прошлое открытое модальоное окно.
+Его функции:
+protected onModelChange(changed: AppStateChanges) - оповещение верхнеуровневых компонентов при изменении модели.
+
+Класс WebLarekAPI.
+Класс WebLarekAPI является классом через который происходит взаимодействие с сервером в данном проекте, наследуется от класса API.
+Его свойства:
+cdn - необходимый cdn некоторых запросов.
+Его функции:
+async getProduct(id: string): Promise<IProduct> - Запрос на получение продукта,
+async getProductList(): Promise<IProduct[]> - запрос на получение списка продуктов,
+async postOrder(order: IOrder): Promise<IOrderResult> - запрос на формирование заказа.
+
+Каталог components/view
+
+Класс ButtonView.
+Класс ButtonView - Отображение типовой кнопки. Наследуется от базового класса View.
+Его функции:
+onClickHandler(event: MouseEvent) - функция которая вызывается по клику на кнопку,
+set label(value: string) - установка лейбла кнопки,
+static make<T extends HTMLElement> - метод создания кнопки, который возвращает элемент DOM дерева.
+
+Класс HeaderView.
+Класс HeaderView - Отображение шапки с заголовком. Наследуется от базового класса View.
+Его функции:
+set title(value: string) - установка тайтла в заголовке,
+
+Класс ListView.
+Класс ListView - Отображение списка элементов. Наследуется от базового класса View.
+Его свойства:
+protected _elements - Сохраняем элементы в объекте, где ключ - id элемента
+Его функции:
+setActiveElement(element: HTMLElement) - установка активного элемента,
+setActiveItem(id: string) - установка активного элемента по id,
+set items(items: T[]) - Обновляем отображение списка элементов.
+Класс ModalView.
+Класс ModalView - Отображение модального окна. Наследуется от базового класса View.
+Его свойства:
+protected static _openedModal - Модальное окно, которое сейчас открыто, оно всегда одно.
+Его функции:
+protected init() - Метод инициализации,
+protected onCloseHandler(event?: MouseEvent) - Функция которая вызывается при закрытии модального окна,
+protected onOpenHandler() - Функция которая вызывается при открытии модального окна
+set header(data: H | undefined) - Проброс header во вложенные отображения,
+set content(data: C) - Проброс content во вложенные отображения,
+set message(value: string | undefined) - Проброс message во вложенные отображения,
+set isActive(state: boolean) - Открытие и закрытие модального окна
+
+Класс CardView.
+Класс CardView - Маленькая карточка продукта для списка в галерее. Наследуется от базового класса View.
+Его свойства:
+id: string - id продукта из галереи.
+Его функции:
+init() - Метод инициализации,
+onClickHandler(event: MouseEvent) - Функция которая вызывается нажатии на карточку из галереи,
+set image(value: string) - Установка image карточки в галерее,
+set title(value: string) - Установка title карточки в галерее,
+set category(value: string) - Установка category карточки в галерее,
+set price(value: string) - Установка price карточки в галерее
+
+Класс ContactsView.
+Класс ContactsView - Форма с контактами. Наследуется от базового класса View.
+Его геттеры:
+get data() - поиск email и phone в DOM дереве
+Его функции:
+init() - Метод инициализации,
+onSubmitHandler(event: SubmitEvent) - Функция которая вызывается при отправке формы и вводе данных в поля формы,
+set email(value: string) - Установка поля email,
+set phone(value: string) - Установка поля phone
+
+
+Класс PageView.
+Класс PageView - Глобальный layout страницы. Наследуется от базового класса View.
+Его функции:
+init() - Метод инициализации,
+onClickHandler(event: MouseEvent) - Функция которая вызывается при клике на корзину,
+set counter(value: number) - Метод для установки значения счетчика товаров в корзине,
+set isLocked(value: boolean) - Метод для блокировки/разблокировки прокрутки страницы при открытии модального окна
+
+Класс PaymentView.
+Класс PaymentView - Форма с оплатой. Наследуется от базового класса View.
+Его свойства:
+protected _paymentCard: HTMLButtonElement - Кнопка "Онлайн",
+protected _paymentCash: HTMLButtonElement - Кнопка "При получении",
+protected _paymentButtonsContainer: HTMLElement - Контейнер кнопок из группы "Способ оплаты",
+protected _addressInput: HTMLInputElement - Поле "Адресс"
+Его геттеры:
+get data() - поиск payment и address в DOM дереве
+Его функции:
+init() - Метод инициализации,
+onSubmitHandler(event: SubmitEvent) - Функция которая вызывается при отправке формы и вводе данных в поля фомы,
+onClickHandler(event: MouseEvent) - Функция которая вызывается при нажатии на кнопки из группы "Способ оплаты",
+set payment(value: string) - Установка поля payment,
+set address(value: string) - Установка поля address
+
+Класс ProductView.
+Класс ProductView - Подробное описание продукта. Наследуется от базового класса View.
+Его свойства:
+protected declare _item: ProductData - Выбраный продукт
+Его функции:
+init() - Метод инициализации,
+onClickHandler(event: MouseEvent) - Функция которая вызывается при клике на кнопку добавления в корзину,
+set image(value: string) - Установка image,
+set category(value: string) - Установка category,
+set price(value: string) - Установка price,
+set title(value: string) - Установка title,
+set description(value: string) - Установка description
+
+Класс ProductInBasketView.
+Класс ProductInBasketView - Описание продукта в корзине. Наследуется от базового класса View.
+Его свойства:
+protected _item!: ProductInBasketData - Выбраный продукт
+Его функции:
+init() - Метод инициализации,
+onClickHandler(event: MouseEvent) - Функция которая вызывается при клике на кнопку удаления,
+set index(value: string) - Установка индекса для позиций в корзине,
+set price(value: string) - Установка price,
+set title(value: string) - Установка title,
+render(data: ProductInBasketData) - Функция рендера которая обновляет отображение товаров в корзине
+
+Класс SuccessView.
+Класс SuccessView - Успешное совершение заказа с заголовком, описанием и каким-то действием, например, кнопкой "назад". Наследуется от базового класса View.
+Его функции:
+init() - Метод инициализации,
+onClickHandler(event: MouseEvent) - Функция которая вызывается при клике кнопку в форме успешного завершения заказа,
+set title(value: string - Установка title,
+set description(value: any) - Установка description,
+set action(value: string) - Установка action
+
+Класс BasketScreen.
+Класс BasketScreen - Экран корзины. Подключается в корневом index.ts.
+Его функции:
+initHeader() - Инициализация хедера,
+initContent() - Инициализация контента,
+protected onRemoveProduct({ item }: IClickableEvent<ProductInBasketData>) - Функция, которая обащается к контроллеру и удаляет элемент из корзины,
+set products(products: ProductInBasketData[]) - Устанавливает массив продуктов из модели,
+set total(total: string) - Устанавливает итоговую цену из модели
+
+Класс ContactsFormScreen.
+Класс ContactsFormScreen - Экран формы контактов. Подключается в корневом index.ts.
+Его функции:
+protected init() - Переопределение инициализации,
+initHeader() - Инициализация хедера,
+initContent() - Инициализация контента,
+protected onFormChange({ value }: IChangeableEvent<ContactsData>) - Функция, которая обащается к контроллеру для валидации данных,
+set contacts(value: ContactsData) - Устанавливает значения в полях
+
+Класс MainScreen.
+Класс MainScreen - Экран главной страницы. Подключается в корневом index.ts.
+Его свойства:
+protected declare gallery: ListView<CardData> - Галерея
+public declare page: PageView - Главная страница
+Его функции:
+protected init() - Переопределение инициализации,
+protected onOpenProductHandler({ item }: IClickableEvent<string>) - Функция, которая обащается к контроллеру при открытии продукта,
+set counter(value: number) - Устанавливает counter,
+set items(value: CardData[]) - Установка содержимого галереи,
+set selected(value: CardData) - Установка значения выбранного продукта
+
+Класс ModalScreen.
+Класс ModalScreen - Общая логика и структура модальных окон.
+Его свойства:
+protected declare modal: ModalView<H, M> - Модальное окно,
+protected declare nextButton: HTMLButtonElement - Кнопка "Далее",
+abstract initHeader(): IView<H> - Абстрактный метод инициализации хедера для реализации в дочернем классе,
+abstract initContent(): IView<M> - Абстрактный метод инициализации контента для реализации в дочернем классе
+Его функции:
+protected init() - Функция инициализации,
+protected getNextButton(settings: { nextLabel: string; nextSettings: ElementCreator }, onClick: () => void) - Функция создания кнопки "Далее",
+protected getModalView(settings: { headerView: IView<H>; contentView: IView<M> }, onClose: () => void) - Функция создания модального окна,
+set header(value: H) - Устанавливает header,
+set content(value: M) - Устанавливает content,
+set isActive(value: boolean) - Устанавливает флаг isActive для модального окна,
+set isDisabled(state: boolean) - Устанавливает флаг isDisabled для кнопки
+
+Класс PaymentFormScreen.
+Класс PaymentFormScreen - Экран формы оплаты. Подключается в корневом index.ts.
+Его функции:
+protected init() - Функция инициализации,
+initHeader() - Инициализация хедера,
+initContent() - Инициализация контента,
+protected onFormChange({ value }: IChangeableEvent<PaymentData>) - Функция, которая обащается к контроллеру для валидации данных при изменении данных в полях,
+protected onFormClick({ item }: IClickableEvent<PaymentData>) - Функция, которая обащается к контроллеру для валидации данных клике на кнопки оплаты,
+set payment(value: PaymentData) - Устанавливает payment
+
+Класс ProductFormScreen.
+Класс ProductFormScreen - Экран формы оплаты. Подключается в корневом index.ts.
+Его свойства:
+protected declare _item: ProductData - Выбраный продукт
+Его функции:
+initHeader() - Инициализация хедера,
+initContent() - Инициализация контента,
+protected onAddBasket() - Функция, которая обащается к контроллеру и добавляет товар в корзину,
+set content(value: ProductData) - Устанавливает content
+
+Класс SuccessScreen.
+Класс SuccessScreen - Экран подтверждения успешного бронирования. Подключается в корневом index.ts.
+Его свойства:
+protected declare modal: ModalView<never, SuccessData> - Модальное окно
+Его функции:
+protected init() - Функция инициализации,
+set content(value: SuccessData) - Устанавливает content,
+set isActive(value: boolean) - Устанавливает флаг isActive для модального окна

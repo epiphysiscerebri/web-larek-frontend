@@ -9,7 +9,6 @@ import {
 } from './../../../types/components/view/screen/Main';
 import { ListView } from '../common/List';
 import { CardView } from '../partial/Card';
-import { ProductView } from '../partial/Product';
 import { PageView } from '../partial/Page';
 import { CardData } from './../../../types/components/view/partial/Card';
 
@@ -40,7 +39,6 @@ export class MainScreen extends Screen<MainData, MainSettings> {
 		this.element = this.page.element;
 	}
 
-	// Передача id элемента
 	protected onOpenProductHandler({ item }: IClickableEvent<string>) {
 		this.settings.onOpenProduct(item);
 	}

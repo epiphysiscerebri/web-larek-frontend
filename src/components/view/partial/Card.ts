@@ -41,7 +41,6 @@ export class CardView extends View<CardData, CardSettings> {
 		} else if (!value) {
 			value = 'Бесценно';
 		}
-
 		this.setValue(this.settings.price, value);
 	}
 }

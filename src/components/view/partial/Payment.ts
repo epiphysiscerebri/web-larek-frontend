@@ -76,17 +76,3 @@ export class PaymentView extends View<PaymentData, PaymentSettings> {
 		};
 	}
 }
-
-// this._paymentCard.addEventListener('click', () => {
-// 	this.payment = 'card';
-// 	this.onClickHandler.bind(this);
-// 	this._paymentCash.classList.remove('button_alt-active');
-// 	this._paymentCard.classList.add('button_alt-active');
-// });
-
-// this._paymentCash.addEventListener('click', () => {
-// 	this.payment = 'cash';
-// 	this.onClickHandler.bind(this);
-// 	this._paymentCard.classList.remove('button_alt-active');
-// 	this._paymentCash.classList.add('button_alt-active');
-// });

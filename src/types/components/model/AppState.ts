@@ -21,7 +21,6 @@ export enum AppStateModals {
 export enum AppStateChanges {
 	products = 'change:product',
 	modal = 'change:modal',
-	// modalMessage = 'change:modalMessage',
 	selectedProduct = 'change:selectedProduct',
 	payment = 'change:payment',
 	contacts = 'change:contacts',
@@ -57,7 +56,6 @@ export interface AppState {
 	isOrderReady: boolean;
 	// Открытое модальное окно
 	openedModal: AppStateModals;
-	// modalMessage: string | null;
 
 	// Действия с API
 	// Получение списка продуктов

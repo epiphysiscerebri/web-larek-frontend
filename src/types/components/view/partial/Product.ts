@@ -17,5 +17,4 @@ export interface ProductSettings extends IClickable<ProductData> {
 	description: string;
 	price: any;
 	compactClass: string;
-	isCompact?: boolean;
 }

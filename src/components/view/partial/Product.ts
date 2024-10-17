@@ -10,7 +10,6 @@ import {
 export class ProductView extends View<ProductData, ProductSettings> {
 	protected declare _item: ProductData;
 	init() {
-		this.isCompact = this.settings.isCompact;
 		this.ensure(this.settings.action).addEventListener(
 			'click',
 			this.onClickHandler.bind(this)
@@ -30,7 +29,6 @@ export class ProductView extends View<ProductData, ProductSettings> {
 		this.setValue(this.settings.category, value);
 	}
 
-	// Может быть поменять value на число
 	set price(value: string) {
 		if (typeof value === 'number') {
 			value = value + ' синапсов';
@@ -49,9 +47,5 @@ export class ProductView extends View<ProductData, ProductSettings> {
 
 	set description(value: string) {
 		this.setValue(this.settings.description, value);
-	}
-
-	set isCompact(value: boolean) {
-		this.element.classList.toggle(this.settings.compactClass, value);
 	}
 }

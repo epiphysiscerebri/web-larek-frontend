@@ -6,7 +6,7 @@ import {
 } from './../../../types/components/view/partial/Success';
 
 /**
- * Экран успешного совершения заказа с заголовком, описанием и каким-то действием, например, кнопкой "назад".
+ *  Успешное совершения заказа с заголовком, описанием и каким-то действием, например, кнопкой "Вернуться в главное меню".
  */
 export class SuccessView extends View<SuccessData, SuccessSettings> {
 	init() {
