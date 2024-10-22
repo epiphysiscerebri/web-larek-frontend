@@ -12,11 +12,18 @@ import {
  * Отображение типовой кнопки
  */
 export class ButtonView<T> extends View<ButtonData, ButtonSettings<T>> {
-	init() {
+	element: HTMLElement;
+	settings: ButtonSettings<T>;
+
+	constructor(element: HTMLElement, settings: ButtonSettings<T>) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this.element.addEventListener('click', this.onClickHandler.bind(this));
 	}
 
-	onClickHandler(event: MouseEvent) {
+	onClickHandler(event: MouseEvent): void {
 		this.settings.onClick({ event });
 	}
 

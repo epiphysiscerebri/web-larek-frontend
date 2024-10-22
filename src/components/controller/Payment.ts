@@ -6,18 +6,24 @@ import {
 import { PaymentData } from './../../types/components/view/partial/Payment';
 
 export class PaymentController extends Controller<AppState> {
-	onChange = (value: PaymentData) => {
+	model: AppState;
+
+	constructor(model: AppState) {
+		super(model);
+	}
+
+	onChange = (value: PaymentData): void => {
 		this.model.fillPayment(value);
 	};
-	onClick = (item: PaymentData) => {
+	onClick = (item: PaymentData): void => {
 		this.model.fillPayment(item);
 	};
-	onNext = async () => {
+	onNext = (): void => {
 		if (this.model.isValidPayment()) {
 			this.model.openModal(AppStateModals.contacts);
 		}
 	};
-	onClose = () => {
+	onClose = (): void => {
 		this.model.openModal(AppStateModals.none);
 	};
 }

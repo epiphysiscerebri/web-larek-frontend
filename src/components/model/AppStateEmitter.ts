@@ -25,7 +25,7 @@ export class AppStateEmitter extends EventEmitter {
 		});
 	}
 
-	protected onModelChange(changed: AppStateChanges) {
+	protected onModelChange(changed: AppStateChanges): void {
 		if (changed === AppStateChanges.modal) {
 			this.emit(changed, {
 				previous: this.previousModal,

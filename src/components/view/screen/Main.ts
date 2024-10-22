@@ -18,8 +18,14 @@ import { CardData } from './../../../types/components/view/partial/Card';
 export class MainScreen extends Screen<MainData, MainSettings> {
 	protected declare gallery: ListView<CardData>;
 	public declare page: PageView;
+	element: HTMLElement;
+	settings: MainSettings;
 
-	protected init() {
+	constructor(settings: MainSettings) {
+		super(settings);
+	}
+
+	protected init(): void {
 		this.page = new PageView(ensureElement(SETTINGS.pageSelector), {
 			...SETTINGS.pageSettings,
 			onClick: this.settings.onOpenBasket,
@@ -39,7 +45,7 @@ export class MainScreen extends Screen<MainData, MainSettings> {
 		this.element = this.page.element;
 	}
 
-	protected onOpenProductHandler({ item }: IClickableEvent<string>) {
+	protected onOpenProductHandler({ item }: IClickableEvent<string>): void {
 		this.settings.onOpenProduct(item);
 	}
 

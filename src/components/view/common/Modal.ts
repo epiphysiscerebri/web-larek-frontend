@@ -14,8 +14,14 @@ export class ModalView<H, C> extends View<
 > {
 	// модальное окно, которое сейчас открыто, оно всегда одно
 	protected static _openedModal: ModalView<unknown, unknown> | null;
+	element: HTMLElement;
+	settings: ModalSettings<H, C>;
 
-	protected init() {
+	constructor(element: HTMLElement, settings: ModalSettings<H, C>) {
+		super(element, settings);
+	}
+
+	protected init(): void {
 		// слушаем клик по иконке закрыть
 		this.ensure(this.settings.close).addEventListener(
 			'click',
@@ -29,7 +35,7 @@ export class ModalView<H, C> extends View<
 		}
 	}
 
-	protected onCloseHandler(event?: MouseEvent) {
+	protected onCloseHandler(event?: MouseEvent): void {
 		if (
 			event &&
 			// при повторном вызове ensure возвращает элемент из кеша
@@ -49,7 +55,7 @@ export class ModalView<H, C> extends View<
 		}
 	}
 
-	protected onOpenHandler() {
+	protected onOpenHandler(): void {
 		if (ModalView._openedModal) {
 			ModalView._openedModal.isActive = false;
 		}

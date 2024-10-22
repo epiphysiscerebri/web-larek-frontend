@@ -1,18 +1,28 @@
 import { View } from '../../base/View';
-import { PageData, PageSettings } from './../../../types/components/view/partial/Page';
+import {
+	PageData,
+	PageSettings,
+} from './../../../types/components/view/partial/Page';
 
 /**
  * Глобальный layout страницы
  */
 export class PageView extends View<PageData, PageSettings> {
-	init() {
+	element: HTMLElement;
+	settings: PageSettings;
+
+	constructor(element: HTMLElement, settings: PageSettings) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this.ensure(this.settings.basket).addEventListener(
 			'click',
 			this.onClickHandler.bind(this)
 		);
 	}
 
-	onClickHandler(event: MouseEvent) {
+	onClickHandler(event: MouseEvent): void {
 		this.settings.onClick({ event });
 	}
 

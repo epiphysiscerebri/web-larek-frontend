@@ -12,15 +12,21 @@ export class ProductInBasketView extends View<
 	ProductInBasketSettings
 > {
 	protected _item!: ProductInBasketData;
+	element: HTMLElement;
+	settings: ProductInBasketSettings;
 
-	init() {
+	constructor(element: HTMLElement, settings: ProductInBasketSettings) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this.ensure(this.settings.delete).addEventListener(
 			'click',
 			this.onClickHandler.bind(this)
 		);
 	}
 
-	onClickHandler(event: MouseEvent) {
+	onClickHandler(event: MouseEvent): void {
 		this.settings.onClick({ event, item: this._item });
 	}
 
@@ -41,7 +47,7 @@ export class ProductInBasketView extends View<
 		this.setValue(this.settings.price, value);
 	}
 
-	render(data: ProductInBasketData) {
+	render(data: ProductInBasketData): HTMLElement {
 		this._item = data;
 		return super.render(data);
 	}

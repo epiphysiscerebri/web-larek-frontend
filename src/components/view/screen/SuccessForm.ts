@@ -18,8 +18,14 @@ export class SuccessScreen extends Screen<
 	SuccessFormSettings
 > {
 	protected declare modal: ModalView<never, SuccessData>;
+	element: HTMLElement;
+	settings: SuccessFormSettings;
 
-	init() {
+	constructor(settings: SuccessFormSettings) {
+		super(settings);
+	}
+
+	init(): void {
 		this.modal = new ModalView<never, SuccessData>(
 			cloneTemplate(SETTINGS.modalTemplate),
 			{

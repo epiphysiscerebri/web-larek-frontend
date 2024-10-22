@@ -16,11 +16,16 @@ export class ListView<T extends ItemData> extends View<
 > {
 	// Сохраняем элементы в объекте, где ключ - id элемента
 	protected _elements: ElementsMap;
+	element: HTMLElement;
+	settings: ListSettings<T>;
 
+	constructor(element: HTMLElement, settings: ListSettings<T>) {
+		super(element, settings);
+	}
 	/**
 	 * Устанавливаем активный элемент
 	 */
-	setActiveElement(element: HTMLElement) {
+	setActiveElement(element: HTMLElement): void {
 		const elements = Object.values(this._elements);
 		if (elements.includes(element)) {
 			elements.map((element) =>
@@ -33,7 +38,7 @@ export class ListView<T extends ItemData> extends View<
 	/**
 	 * Устанавливаем активный элемент по id
 	 */
-	setActiveItem(id: string) {
+	setActiveItem(id: string): void {
 		if (this._elements[id]) {
 			this.setActiveElement(this._elements[id]);
 		}

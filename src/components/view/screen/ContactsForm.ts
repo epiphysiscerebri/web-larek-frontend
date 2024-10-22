@@ -1,3 +1,4 @@
+import { ModalView } from './../common/Modal';
 import { ModalScreen } from './../../view/screen/ModalScreen';
 import { cloneTemplate } from './../../../utils/html';
 import { SETTINGS } from './../../../utils/constants';
@@ -21,7 +22,16 @@ export class ContactsFormScreen extends ModalScreen<
 	ContactsFormData,
 	ContactsFormSettings
 > {
-	protected init() {
+	modal: ModalView<HeaderData, ContactsData>;
+	element: HTMLElement;
+	settings: ContactsFormSettings;
+	nextButton: HTMLButtonElement;
+
+	constructor(settings: ContactsFormSettings) {
+		super(settings);
+	}
+
+	protected init(): void {
 		this.nextButton = this.getNextButton(
 			SETTINGS.contactsModal,
 			this.settings.onNext
@@ -38,20 +48,20 @@ export class ContactsFormScreen extends ModalScreen<
 		this.element = this.modal.element;
 	}
 
-	initHeader() {
+	initHeader(): HeaderView {
 		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
 			...SETTINGS.headerSettings,
 		});
 	}
 
-	initContent() {
+	initContent(): ContactsView {
 		return new ContactsView(cloneTemplate(SETTINGS.contactsTemplate), {
 			...SETTINGS.contactsSettings,
 			onChange: this.onFormChange.bind(this),
 		});
 	}
 
-	protected onFormChange({ value }: IChangeableEvent<ContactsData>) {
+	protected onFormChange({ value }: IChangeableEvent<ContactsData>): void {
 		this.settings.onChange(value);
 	}
 

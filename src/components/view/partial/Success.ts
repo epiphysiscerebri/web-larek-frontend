@@ -9,14 +9,21 @@ import {
  *  Успешное совершения заказа с заголовком, описанием и каким-то действием, например, кнопкой "Вернуться в главное меню".
  */
 export class SuccessView extends View<SuccessData, SuccessSettings> {
-	init() {
+	element: HTMLElement;
+	settings: SuccessSettings;
+
+	constructor(element: HTMLElement, settings: SuccessSettings) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this.ensure(this.settings.action).addEventListener(
 			'click',
 			this.onClickHandler.bind(this)
 		);
 	}
 
-	onClickHandler(event: MouseEvent) {
+	onClickHandler(event: MouseEvent): void {
 		this.settings.onClick({ event });
 	}
 

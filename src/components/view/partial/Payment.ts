@@ -12,7 +12,14 @@ export class PaymentView extends View<PaymentData, PaymentSettings> {
 	protected _paymentCash: HTMLButtonElement;
 	protected _paymentButtonsContainer: HTMLElement;
 	protected _addressInput: HTMLInputElement;
-	init() {
+	element: HTMLElement;
+	settings: PaymentSettings;
+
+	constructor(element: HTMLElement, settings: PaymentSettings) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this._paymentCard = this.ensure<HTMLButtonElement>('#card', this.element);
 		this._paymentCash = this.ensure<HTMLButtonElement>('#cash', this.element);
 		this._paymentButtonsContainer = this.ensure<HTMLElement>(
@@ -45,14 +52,14 @@ export class PaymentView extends View<PaymentData, PaymentSettings> {
 		this.element.addEventListener('input', this.onSubmitHandler.bind(this));
 	}
 
-	onSubmitHandler(event: SubmitEvent) {
+	onSubmitHandler(event: SubmitEvent): boolean {
 		event.preventDefault();
 		this.settings.onChange({ event, value: this.data });
 		this._addressInput.focus();
 		return false;
 	}
 
-	onClickHandler(event: MouseEvent) {
+	onClickHandler(event: MouseEvent): boolean {
 		this.settings.onClick({ event, item: this.data });
 		return false;
 	}
@@ -69,7 +76,7 @@ export class PaymentView extends View<PaymentData, PaymentSettings> {
 		});
 	}
 
-	get data() {
+	get data(): { payment: string; address: string } {
 		return {
 			payment: this.ensure<HTMLInputElement>(this.settings.payment).value,
 			address: this.ensure<HTMLInputElement>(this.settings.address).value,

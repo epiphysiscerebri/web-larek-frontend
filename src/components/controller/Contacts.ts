@@ -6,17 +6,23 @@ import {
 import { ContactsData } from '../../types/components/view/partial/Contacts';
 
 export class ContactsController extends Controller<AppState> {
-	onChange = (value: ContactsData) => {
+	model: AppState;
+
+	constructor(model: AppState) {
+		super(model);
+	}
+
+	onChange = (value: ContactsData): void => {
 		this.model.fillContacts(value);
 	};
-	onNext = async () => {
+	onNext = async (): Promise<void> => {
 		if (this.model.isValidContacts()) {
 			await this.model.postOrder().then(() => {
 				this.model.openModal(AppStateModals.success);
 			});
 		}
 	};
-	onClose = () => {
+	onClose = (): void => {
 		this.model.openModal(AppStateModals.none);
 	};
 }

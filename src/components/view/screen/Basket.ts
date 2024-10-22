@@ -1,3 +1,4 @@
+import { ModalView } from './../common/Modal';
 import { ModalScreen } from './../../view/screen/ModalScreen';
 import { IClickableEvent } from './../../../types/components/base/View';
 import { cloneTemplate } from './../../../utils/html';
@@ -23,13 +24,20 @@ export class BasketScreen extends ModalScreen<
 	BasketData,
 	BasketSettings
 > {
-	initHeader() {
+	modal: ModalView<HeaderData, ListData<ProductInBasketData>>;
+	settings: BasketSettings;
+
+	constructor(settings: BasketSettings) {
+		super(settings);
+	}
+
+	initHeader(): HeaderView {
 		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
 			...SETTINGS.headerSettings,
 		});
 	}
 
-	initContent() {
+	initContent(): ListView<ProductInBasketData> {
 		return new ListView<ProductInBasketData>(
 			cloneTemplate(SETTINGS.basketTemplate),
 			{
@@ -45,7 +53,9 @@ export class BasketScreen extends ModalScreen<
 		);
 	}
 
-	protected onRemoveProduct({ item }: IClickableEvent<ProductInBasketData>) {
+	protected onRemoveProduct({
+		item,
+	}: IClickableEvent<ProductInBasketData>): void {
 		this.settings.onRemove(item.id);
 	}
 

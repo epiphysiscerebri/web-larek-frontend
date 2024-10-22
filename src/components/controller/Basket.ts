@@ -5,13 +5,19 @@ import {
 } from './../../types/components/model/AppState';
 
 export class BasketController extends Controller<AppState> {
-	onRemove = (id: string) => {
+	model: AppState;
+
+	constructor(model: AppState) {
+		super(model);
+	}
+
+	onRemove = (id: string): void => {
 		this.model.removeProduct(id);
 	};
-	onNext = () => {
+	onNext = (): void => {
 		this.model.openModal(AppStateModals.payment);
 	};
-	onClose = () => {
+	onClose = (): void => {
 		this.model.openModal(AppStateModals.none);
 	};
 }

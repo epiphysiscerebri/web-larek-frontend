@@ -9,13 +9,20 @@ import {
  */
 export class ProductView extends View<ProductData, ProductSettings> {
 	protected declare _item: ProductData;
-	init() {
+	element: HTMLElement;
+	settings: ProductSettings;
+
+	constructor(element: HTMLElement, settings: ProductSettings) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this.ensure(this.settings.action).addEventListener(
 			'click',
 			this.onClickHandler.bind(this)
 		);
 	}
-	onClickHandler(event: MouseEvent) {
+	onClickHandler(event: MouseEvent): void {
 		this.settings.onClick({ event, item: this._item });
 	}
 

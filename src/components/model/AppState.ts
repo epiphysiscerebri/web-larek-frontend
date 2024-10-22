@@ -140,7 +140,7 @@ export class AppStateModel implements AppState {
 	}
 
 	// Добавление продукта в корзину
-	addToBasket(product: IProduct) {
+	addToBasket(product: IProduct): void {
 		this.basket.set(product.id, product);
 		this.notifyChanged(AppStateChanges.basket);
 	}

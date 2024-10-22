@@ -5,12 +5,18 @@ import {
 import { Controller } from './../../components/base/Controller';
 
 export class MainController extends Controller<AppState> {
-	onOpenBasket = () => {
+	model: AppState;
+
+	constructor(model: AppState) {
+		super(model);
+	}
+
+	onOpenBasket = (): void => {
 		this.model.openModal(AppStateModals.basket);
 	};
 
-	onOpenProduct = (id: string) => {
-		this.model.getProduct(id);
+	onOpenProduct = async (id: string): Promise<void> => {
+		await this.model.getProduct(id);
 		this.model.openModal(AppStateModals.product);
 	};
 }

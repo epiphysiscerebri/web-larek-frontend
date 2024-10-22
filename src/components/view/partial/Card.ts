@@ -9,12 +9,18 @@ import {
  */
 export class CardView extends View<CardData, CardSettings> {
 	id: string;
+	element: HTMLElement;
+	settings: CardSettings;
 
-	init() {
+	constructor(element: HTMLElement, settings: CardSettings) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this.element.addEventListener('click', this.onClickHandler.bind(this));
 	}
 
-	onClickHandler(event: MouseEvent) {
+	onClickHandler(event: MouseEvent): void {
 		this.settings.onClick({ event, item: this.id });
 	}
 

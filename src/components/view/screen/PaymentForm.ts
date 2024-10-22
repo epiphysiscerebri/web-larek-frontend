@@ -1,3 +1,4 @@
+import { ModalView } from './../common/Modal';
 import { ModalScreen } from './ModalScreen';
 import { cloneTemplate } from '../../../utils/html';
 import { SETTINGS } from '../../../utils/constants';
@@ -22,7 +23,16 @@ export class PaymentFormScreen extends ModalScreen<
 	PaymentFormData,
 	PaymentFormSettings
 > {
-	protected init() {
+	modal: ModalView<HeaderData, PaymentData>;
+	element: HTMLElement;
+	settings: PaymentFormSettings;
+	nextButton: HTMLButtonElement;
+
+	constructor(settings: PaymentFormSettings) {
+		super(settings);
+	}
+
+	protected init(): void {
 		this.nextButton = this.getNextButton(
 			SETTINGS.paymentModal,
 			this.settings.onNext
@@ -39,13 +49,13 @@ export class PaymentFormScreen extends ModalScreen<
 		this.element = this.modal.element;
 	}
 
-	initHeader() {
+	initHeader(): HeaderView {
 		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
 			...SETTINGS.headerSettings,
 		});
 	}
 
-	initContent() {
+	initContent(): PaymentView {
 		return new PaymentView(cloneTemplate(SETTINGS.paymentTemplate), {
 			...SETTINGS.paymentSettings,
 			onChange: this.onFormChange.bind(this),
@@ -53,11 +63,11 @@ export class PaymentFormScreen extends ModalScreen<
 		});
 	}
 
-	protected onFormChange({ value }: IChangeableEvent<PaymentData>) {
+	protected onFormChange({ value }: IChangeableEvent<PaymentData>): void {
 		this.settings.onChange(value);
 	}
 
-	protected onFormClick({ item }: IClickableEvent<PaymentData>) {
+	protected onFormClick({ item }: IClickableEvent<PaymentData>): void {
 		this.settings.onClick(item);
 	}
 

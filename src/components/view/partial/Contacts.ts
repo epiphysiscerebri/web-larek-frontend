@@ -8,12 +8,19 @@ import {
  * Форма с контактами
  */
 export class ContactsView extends View<ContactsData, ContactsSettings> {
-	init() {
+	element: HTMLElement;
+	settings: ContactsSettings;
+
+	constructor(element: HTMLElement, settings: ContactsSettings) {
+		super(element, settings);
+	}
+
+	init(): void {
 		this.element.addEventListener('submit', this.onSubmitHandler.bind(this));
 		this.element.addEventListener('input', this.onSubmitHandler.bind(this));
 	}
 
-	onSubmitHandler(event: SubmitEvent) {
+	onSubmitHandler(event: SubmitEvent): boolean {
 		event.preventDefault();
 		this.settings.onChange({ event, value: this.data });
 		this.ensure<HTMLInputElement>(
@@ -35,7 +42,7 @@ export class ContactsView extends View<ContactsData, ContactsSettings> {
 		});
 	}
 
-	get data() {
+	get data(): { email: string; phone: string } {
 		return {
 			email: this.ensure<HTMLInputElement>(this.settings.email).value,
 			phone: this.ensure<HTMLInputElement>(this.settings.phone).value,

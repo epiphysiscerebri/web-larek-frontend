@@ -1,3 +1,4 @@
+import { ModalView } from './../common/Modal';
 import { ModalScreen } from './ModalScreen';
 import { cloneTemplate } from '../../../utils/html';
 import { SETTINGS } from '../../../utils/constants';
@@ -21,21 +22,27 @@ export class ProductFormScreen extends ModalScreen<
 	ProductFormSettings
 > {
 	protected declare _item: ProductData;
+	modal: ModalView<HeaderData, ProductData>;
+	settings: ProductFormSettings;
 
-	initHeader() {
+	constructor(settings: ProductFormSettings) {
+		super(settings);
+	}
+
+	initHeader(): HeaderView {
 		return new HeaderView(cloneTemplate(SETTINGS.headerTemplate), {
 			...SETTINGS.headerSettings,
 		});
 	}
 
-	initContent() {
+	initContent(): ProductView {
 		return new ProductView(cloneTemplate(SETTINGS.productTemplate), {
 			...SETTINGS.productSettings,
 			onClick: this.onAddBasket.bind(this),
 		});
 	}
 
-	protected onAddBasket() {
+	protected onAddBasket(): void {
 		this.settings.onClick(this._item);
 	}
 

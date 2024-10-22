@@ -27,8 +27,15 @@ export abstract class ModalScreen<
 
 	abstract initContent(): IView<M>;
 
+	element: HTMLElement;
+	settings: S;
+
+	constructor(settings: S) {
+		super(settings);
+	}
+
 	// Переопределенный init() для инициализации модального окна
-	protected init() {
+	protected init(): void {
 		this.nextButton = this.getNextButton(
 			SETTINGS.basketModal,
 			this.settings.onNext
@@ -50,7 +57,7 @@ export abstract class ModalScreen<
 	protected getNextButton(
 		settings: { nextLabel: string; nextSettings: ElementCreator },
 		onClick: () => void
-	) {
+	): HTMLButtonElement {
 		return ButtonView.make<HTMLButtonElement>(
 			settings.nextLabel,
 			settings.nextSettings,
@@ -61,7 +68,7 @@ export abstract class ModalScreen<
 	protected getModalView(
 		settings: { headerView: IView<H>; contentView: IView<M> },
 		onClose: () => void
-	) {
+	): ModalView<H, M> {
 		return new ModalView<H, M>(cloneTemplate(SETTINGS.modalTemplate), {
 			...SETTINGS.modalSettings,
 			...settings,
