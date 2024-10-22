@@ -498,3 +498,128 @@ protected declare modal: ModalView<never, SuccessData> - Модальное ок
 protected init() - Функция инициализации,
 set content(value: SuccessData) - Устанавливает content,
 set isActive(value: boolean) - Устанавливает флаг isActive для модального окна
+
+### Описание типов и интерфейсов использующихся на проекте
+
+enum EnumApiMethods - Енам с типами запросов
+
+type ErrorState - Тип ошибки, которая может прийти в ответе с сервера
+
+type EventData - Тип для описание данных которые будут приходить в EventHandler
+
+type EventHandler = (args: EventData) => void - Тип для функий которые будут передаваться в качестве колбэка
+
+type EventsMap = Map<string, Set<EventHandler>> - Тип для Map который будет хранить в себе функции и события
+
+interface IView<T, S = object> - Интерфейс для отображения заданного типа данных
+
+interface IViewConstructor<T, S> - Интерфейс для конструктора отображения
+
+type IClickableEvent<T> - Настройки для кликабельного отображения (кнопки, карточки...)
+
+type IChangeableEvent<T> - Настройки для изменяемого отображения (формы, переключатели...)
+
+enum AppStateModals - Описание событий для модальных окон
+
+enum AppStateChanges - Описание событий для изменений Модели
+
+interface AppState - Описание Модели данных
+
+interface AppStateSettings - Описание настройки Модели. Эта функция будет вызываться при изменении Модели
+
+interface AppStateConstructor - Конструктор модели данных
+
+type ModalChange - Для корректной обработки событий открытия и закрытия модальных окон нам нужно знать предыдущее и текущее состояние
+
+type ApiListResponse<Type> - Тип для ответов с сервера, которые приходят списком
+
+interface IProduct - Описание единицы продукта
+
+interface IContacts - Описание контактов
+
+interface IPayment - Описание оплаты
+
+interface IOrder extends IContacts, IPayment - Описание заказа
+
+interface IOrderResult - Описание результата заказа, который нам присылает сервер, когда мы совершаем заказ
+
+interface IWebLarekApi - Описание АПИ
+
+interface ButtonData - Описание данных кнопок
+
+interface ButtonSettings<T> extends IClickable<T> - Описание объекта настроек для кнопок
+
+interface HeaderData - Описание данных хедера
+
+interface HeaderSetting - Описание объекта настроек для кнопок
+
+type ElementsMap = Record<string, HTMLElement> - Описание Map с элементами
+
+interface ItemData - Описание элемента данных
+
+interface ListData<T> - Описание списка с данными
+
+interface ListSettings<T> - Описание объекта настроек для списка
+
+interface ModalData<H, C> - Описание данных модального окна
+
+interface ModalSettings<H, C> - Описание объекта настроек для модального окна
+
+interface CardData - Описание данных карточки
+
+interface CardSettings extends IClickable<string> - Описание объекта настроек для карточки
+
+interface ContactsData - Описание данных контактов
+
+interface ContactsSettings extends IChangeable<ContactsData> - Описание объекта настроек для контактов
+
+interface PageData - Описание данных страницы
+
+interface PageSettings extends IClickable<never> - Описание объекта настроек для страницы
+
+interface PaymentData - Описание данных оплаты
+
+export interface PaymentSettings extends IChangeable<PaymentData>,IClickable<PaymentData> - Описание объекта настроек для оплаты
+
+interface ProductData - Описание данных продукта
+
+interface ProductSettings extends IClickable<ProductData> - Описание объекта настроек для продукта
+
+interface ProductInBasketData - Описание данных продукта в корзине
+
+interface ProductInBasketSettings extends IClickable<ProductInBasketData> - Описание объекта настроек для продукта в корзине
+
+interface SuccessData - Описание данных успешного выполнения заказа
+
+interface SuccessSettings extends IClickable<never> - Описание объекта настроек для успешного выполнения заказа
+
+interface BasketData - Описание данных для модального окна корзины
+
+interface BasketSettings - Описание настроек для модального окна корзины
+
+interface ContactsFormData - Описание данных для модального окна контактов
+
+interface ContactsFormSettings - Описание настроек для модального окна контактов
+
+interface MainData - Описание данных для главного экрана
+
+interface MainSettings - Описание настроек для главного экрана
+
+interface ModalScreenSettings - Описание основных настроек для модального окна
+
+interface PaymentFormData - Описание данных для модального окна оплаты
+
+interface PaymentFormSettings - Описание настроек для модального окна оплаты
+
+interface ProductFormData - Описание данных для модального окна продукта
+
+interface ProductFormSettings - Описание настроек для модального окна продукта
+
+interface SuccessFormData - Описание данных для модального окна успешного выполнения заказа
+
+interface SuccessFormSettings - Описание настроек для модального окна успешного выполнения заказа
+
+interface Settings - Полное описание всех насторек 
+
+
+
