@@ -28,12 +28,4 @@ export class EventEmitter {
 			this.events.get(eventName).forEach((handler) => handler(data));
 		}
 	}
-
-	reset() {
-		this.events.clear();
-	}
-
-	bindEmitter(events: EventsMap) {
-		this.events = events;
-	}
 }

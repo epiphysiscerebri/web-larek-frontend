@@ -16,5 +16,4 @@ export interface ProductSettings extends IClickable<ProductData> {
 	title: string;
 	description: string;
 	price: any;
-	compactClass: string;
 }

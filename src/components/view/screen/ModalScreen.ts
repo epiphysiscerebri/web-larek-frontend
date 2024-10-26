@@ -21,14 +21,14 @@ export abstract class ModalScreen<
 	// кнопка "Далее"
 	protected declare nextButton: HTMLButtonElement;
 
+	element: HTMLElement;
+	settings: S;
+
 	// Абстрактные методы для реализации в дочерних классах
 
 	abstract initHeader(): IView<H>;
 
 	abstract initContent(): IView<M>;
-
-	element: HTMLElement;
-	settings: S;
 
 	constructor(settings: S) {
 		super(settings);

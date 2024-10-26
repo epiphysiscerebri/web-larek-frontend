@@ -22,7 +22,7 @@ import { BasketScreen } from './components/view/screen/Basket';
 import { ModalChange } from './types/components/model/AppStateEmitter';
 
 const api = new WebLarekAPI(CDN_URL, API_URL);
-const app = new AppStateEmitter(api, SETTINGS.appState, AppStateModel);
+const app = new AppStateEmitter(api, {}, AppStateModel);
 const main = new MainScreen(new MainController(app.model));
 const modal = {
 	[AppStateModals.product]: new ProductFormScreen(

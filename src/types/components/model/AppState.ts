@@ -68,7 +68,6 @@ export interface AppState {
 	// Методы для работы с модальными окнами
 	// Открытие модального окна
 	openModal(modal: AppStateModals): void;
-	// setMessage(message: string | null, isError: boolean): void;
 
 	// Пользовательские действия
 	// Добавление в корзину

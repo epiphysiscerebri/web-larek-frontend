@@ -42,7 +42,6 @@ export interface Settings {
 		footer: string;
 		message?: string;
 		activeClass: string;
-		messageErrorClass: string;
 	};
 
 	productTemplate: string;
@@ -53,7 +52,6 @@ export interface Settings {
 		title: string;
 		description: string;
 		price: any;
-		compactClass: string;
 	};
 	productModal: {
 		headerTitle: string;
@@ -112,6 +110,4 @@ export interface Settings {
 		description: any;
 		action: string;
 	};
-
-	appState: {};
 }

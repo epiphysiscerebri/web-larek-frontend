@@ -17,7 +17,6 @@ export interface ModalSettings<H, C> {
 	message?: string;
 	actions: HTMLElement[];
 	activeClass: string;
-	messageErrorClass: string;
 	onOpen?: () => void;
 	onClose?: () => void;
 }

@@ -16,8 +16,6 @@ export class HeaderView extends View<HeaderData, HeaderSettings> {
 		super(element, settings);
 	}
 
-	init(): void {}
-
 	set title(value: string) {
 		this.setValue(this.settings.title, value);
 	}

@@ -18,7 +18,7 @@ export class AppStateModel implements AppState {
 	_selectedProduct: string | null = null;
 
 	// Ответ сервера на запрос о совершении заказа
-	responseOrder: {} = {};
+	responseOrder: object = {};
 
 	// Массив с продуктами
 	products: Map<string, IProduct> = new Map<string, IProduct>();

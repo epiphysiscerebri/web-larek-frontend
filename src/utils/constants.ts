@@ -42,7 +42,6 @@ export const SETTINGS: Settings = {
 		footer: '.modal__footer',
 		message: '.modal__message',
 		activeClass: 'modal_active',
-		messageErrorClass: 'modal__message_error',
 	},
 
 	productTemplate: '#card-preview',
@@ -53,7 +52,6 @@ export const SETTINGS: Settings = {
 		title: '.card__title',
 		description: '.card__text',
 		price: '.card__price',
-		compactClass: '.card_compact',
 	},
 	productModal: {
 		headerTitle: '',
@@ -112,5 +110,4 @@ export const SETTINGS: Settings = {
 		description: 'Cписано: ',
 		action: 'За новыми покупками!',
 	},
-	appState: {},
 };
